@@ -1,11 +1,11 @@
-import itertools
+
 import cv2
-from cv2 import imread
+import itertools
+import functions as fun
 
 
-img = imread('./demo/DWN-Resurrect_32-rocketsPalette.png')
+img = cv2.imread('./demo/DWN-Resurrect_32-rocketsPalette.png')
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
 ###############################################################################
 # Process image for colors
 ###############################################################################
@@ -16,3 +16,15 @@ colPal = list(set(list(itertools.chain(*pixs))))
 ###############################################################################
 colDict = {col: ix for (ix, col) in enumerate(colPal)}
 pixDict = tuple([tuple([colDict[i] for i in row]) for row in pixs])
+###############################################################################
+# Get run length
+###############################################################################
+dictVals = list(colDict.values())
+runL = [fun.runLength(i) for i in pixDict]
+# Get flattened vectors counts ------------------------------------------------
+pVectors = {}
+for dix in dictVals:
+    pValPerRow = [[c for (c, i) in row if i == dix] for row in runL]
+    pVector = fun.flatten(pValPerRow)
+    pVectors[dix] = pVector
+pVectors
