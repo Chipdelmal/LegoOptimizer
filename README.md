@@ -1,6 +1,14 @@
 # LegoOptimizer
 
 
+Steps:
+
+* Image scaling: Downscaling and quantizing image
+* Preprocess: Convert image to colors dictionary, and then to run-length encoding
+* Optimizer: Solve the multiple knapsack problem
+* Postproces: De-convert the solution into an RGB-like space
+* Image visualization: Present the results as overlays in the original image
+
 
 # Sources
 

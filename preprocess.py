@@ -5,7 +5,6 @@ import functions as fun
 from os import path
 
 (fPath, fName) = ('./demo', 'DWN-Resurrect_32-rocketsPalette.png')
-
 ###############################################################################
 # Load image
 ###############################################################################
