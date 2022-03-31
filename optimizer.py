@@ -1,8 +1,6 @@
 
 from os import path
-from time import time
-from ortools.linear_solver import pywraplp
-from compress_pickle import load
+from compress_pickle import dump, load
 import constants as cst
 import functions as fun
 
@@ -24,3 +22,8 @@ for colorIx in range(len(pDict['runLengthVectors'])):
     solution[colorIx] = {
         colorIx: fun.solveColor(gaps, blocks, values=values, verbose=VERBOSE)
     }
+###############################################################################
+# Export solution
+###############################################################################
+pklFName = path.join(fPath, fName.split('.png')[0])+'_Solved.pkl'
+dump(pDict, pklFName)
