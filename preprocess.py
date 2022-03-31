@@ -2,12 +2,16 @@
 import cv2
 import itertools
 from os import path
+from sys import argv
 from compress_pickle import dump
 import functions as fun
 import constants as cst
 
 
-(fPath, fName) = ('./demo', 'DWN-Resurrect_32-rocketsPalette.png')
+if fun.isNotebook():
+    (fPath, fName) = ('./demo', 'sami.png')
+else:
+    (fPath, fName) = (argv[1], argv[2])
 ###############################################################################
 # Load image
 ###############################################################################

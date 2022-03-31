@@ -1,5 +1,6 @@
 
 from time import time
+from termcolor import colored
 from itertools import groupby
 from ortools.linear_solver import pywraplp
 import constants as cst
@@ -16,6 +17,22 @@ def runLength(s_list):
 def flatten(t):
     # https://stackoverflow.com/questions/952914/how-to-make-a-flat-list-out-of-a-list-of-lists
     return [item for sublist in t for item in sublist]
+
+def rgbToHex(rgb):
+    # https://www.codespeedy.com/convert-rgb-to-hex-color-code-in-python/
+    return '%02x%02x%02x' % rgb
+
+def isNotebook():
+    try:
+        shell = get_ipython().__class__.__name__
+        if shell == 'ZMQInteractiveShell':
+            return True
+        elif shell == 'TerminalInteractiveShell':
+            return False
+        else:
+            return False
+    except NameError:
+        return False
 
 ###############################################################################
 # Optimization
@@ -88,13 +105,16 @@ def solveColor(
     status = solver.Solve()
     # Timing ------------------------------------------------------------------
     toc = time()
-    runTime = (toc-tic)/60
+    rTime = (toc-tic)/60
     # Assemble and return solution --------------------------------------------
     solution = convertSolution(data, x, blocks)
     if verbose:
-        print(f"Timing for {len(gaps):04d} elements: {(toc-tic)/60:.2f} mins")
-    outDict = {
-        'timing': runTime,
-        'solution': solution
-    }
+        (gLen, gNum) = (len(gaps), sum(gaps))
+        print(
+            colored(
+                f"[{rTime:.2f} mins for {gLen:04d} elements with {gNum:04d} length]",
+                'red'
+            )
+        )
+    outDict = solution
     return outDict
