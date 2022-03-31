@@ -47,9 +47,9 @@ pLengths = {i: len(pVectors[i]) for i in pVectors.keys()}
 outDict = {
     'colorMapper': colDict,
     'colorDeMapper': colDeDict,
-    'pixelsMapped': pixDict,
-    'pVectors': pVectors,
-    'pLengths': pLengths
+    'imageMapped': pixDict,
+    'runLengthVectors': pVectors,
+    'runLengthLengths': pLengths
 }
 pklFName = path.join(fPath, fName.split('.png')[0])+'.pkl'
 dump(outDict, pklFName)

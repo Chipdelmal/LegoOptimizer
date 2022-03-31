@@ -61,6 +61,7 @@ dependencies:
   - zeromq=4.3.4=h9c3ff4c_1
   - zlib=1.2.11=h166bdaf_1014
   - pip:
+    - compress-pickle==2.1.0
     - opencv-python==4.5.5.64
     - pillow==9.0.1
 prefix: /home/chipdelmal/miniconda3/envs/lego
