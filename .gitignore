@@ -1,5 +1,6 @@
 # Media
 *.png
+*.bz
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
