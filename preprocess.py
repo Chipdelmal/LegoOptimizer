@@ -1,14 +1,10 @@
 
 import cv2
-import time
 import itertools
 from os import path
 from compress_pickle import dump
 import functions as fun
 import constants as cst
-
-from datetime import datetime
-from ortools.linear_solver import pywraplp
 
 
 (fPath, fName) = ('./demo', 'DWN-Resurrect_32-rocketsPalette.png')
