@@ -3,11 +3,11 @@
 
 Steps:
 
-* Image scaling: Downscaling and quantizing image
-* Preprocess: Convert image to colors dictionary, and then to run-length encoding
-* Optimizer: Solve the multiple knapsack problem
-* Postproces: De-convert the solution into an RGB-like space
-* Image visualization: Present the results as overlays in the original image
+1. Image Preprocessing: quantize, downsample and export image
+2. [Data Preprocess](./preprocess.py): color to key mapping, run-length encoding, export problem vectors
+3. [Optimization](./optimizer.py): solve multiple-knappsack problem
+4. [Postproces](./decoder.py): decode run-length to image reconstruct
+5. Image visualization: reconstruct image with block highlights
 
 
 # Sources
