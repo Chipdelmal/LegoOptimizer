@@ -44,15 +44,25 @@ for rix in range(rowsNum):
         # Get the color's index at current slot being rLen-decoded
         ixCol = rowMap[ixH]
         # Get the solution's list of encoded blocks
-        (solLen, solBlocks) = mDict[ixCol].pop(0)
+        (solLenIdeal, solBlocks) = mDict[ixCol].pop(0)
         # Check length of gaps versus suggested blocks (needs action for error case)
         orgLength = rLens[ixCol].pop(0)
-        orgLength == solLen
-        # print(f'{solLen}:{orgLength}')
-        # Gets the RGB value of the processed color and the block elements
         rgb = pDict['colorDeMapper'][ixCol]
-        dec = (rgb, solBlocks)
-        decodedRow.append(dec)
+        # Gets the RGB value of the processed color and the block elements
+        solLength = sum(solBlocks)
+        if (solLength == orgLength):
+            # Base case where a solution was found for the encoding
+            dec = (rgb, solBlocks)
+            decodedRow.append(solBlocks)
+        else:
+            # Handles the case where blocks were missing for encoding
+            print(f"Missmatch! ({solLength}/{orgLength})")
+            dec = (rgb, solBlocks)
+            # Missing elements are returned as negative
+            if len(solBlocks) > 0:
+                decodedRow.append(solBlocks+[solLength-orgLength])
+            else:
+                decodedRow.append([-orgLength])
         # Update the iterator
         ixH = ixH + orgLength
     decodedImg.append(decodedRow)
@@ -60,3 +70,5 @@ for rix in range(rowsNum):
 # Export Decoded List
 #   decodedImg: List of rows of run-length encoded (rgb, blocks) tuples
 ###############################################################################
+dFName = path.join(fPath, fName.split('.png')[0])+'_Decoded.pkl'
+dump(decodedImg, dFName)
