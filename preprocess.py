@@ -5,7 +5,6 @@ from os import path
 from sys import argv
 from compress_pickle import dump
 import functions as fun
-import constants as cst
 
 
 if fun.isNotebook():

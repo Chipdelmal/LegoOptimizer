@@ -17,7 +17,7 @@ VERBOSE = True
 ###############################################################################
 # Load data
 ###############################################################################
-pklFName=path.join(fPath, fName.split('.png')[0])+'.pkl'
+pklFName = path.join(fPath, fName.split('.png')[0])+'.pkl'
 pDict = load(pklFName)
 ###############################################################################
 # Solve Multiple-Knapsack for every color
@@ -45,4 +45,4 @@ for colorIx in range(colorsNum):
 # Export solution
 ###############################################################################
 pklFName = path.join(fPath, fName.split('.png')[0])+'_Solved.pkl'
-dump(pDict, pklFName)
+dump(solution, pklFName)

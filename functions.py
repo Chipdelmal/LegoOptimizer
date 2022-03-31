@@ -79,15 +79,14 @@ def setSolverObjective(data, x, solver):
     return (x, solver, objective)
 
 def convertSolution(data, x, blocks):
-    blocksAtBins = {}
+    blocksAtBins = []
     for b in data['all_bins']:
         elementsInBin = []
         for i in data['all_items']:
             if x[i, b].solution_value() > 0:
                 elementsInBin.append(blocks[i])
-        blocksAtBins[b] = elementsInBin
+        blocksAtBins.append(elementsInBin)
     return blocksAtBins
-
 
 def solveColor(
         gaps, blocks, 
