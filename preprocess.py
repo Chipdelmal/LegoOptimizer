@@ -42,7 +42,7 @@ for dix in dictVals:
     pVectors[dix] = pValPerRow
 pLengths = {i: len(pVectors[i]) for i in pVectors.keys()}
 ###############################################################################
-# Export vectors
+# Assemble and export vectors
 # -----------------------------------------------------------------------------
 #   colorMapper: RGB tuple to color-index mapper dictionary
 #   colorDeMapper: Color-index to RGB mapper dictionary

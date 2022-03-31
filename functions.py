@@ -92,7 +92,7 @@ def solveColor(
     # Assemble and return solution --------------------------------------------
     solution = convertSolution(data, x, blocks)
     if verbose:
-        print(f"Timing for {len(gaps):2d} elements: {(toc-tic)/60:.2f} mins")
+        print(f"Timing for {len(gaps):04d} elements: {(toc-tic)/60:.2f} mins")
     outDict = {
         'timing': runTime,
         'solution': solution
