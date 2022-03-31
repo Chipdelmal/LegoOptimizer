@@ -18,6 +18,7 @@ def flatten(t):
 
 ###############################################################################
 # Optimization
+#   https://developers.google.com/optimization/bin/multiple_knapsack
 ###############################################################################
 def genSolverData(gaps, blocks, values=cst.NULL_BLOCK_VALUES):
     data = {}
@@ -58,3 +59,13 @@ def setSolverObjective(data, x, solver):
             objective.SetCoefficient(x[i, b], data['values'][i])
     objective.SetMaximization()
     return (x, solver, objective)
+
+def convertSolution(data, x, blocks):
+    blocksAtBins = {}
+    for b in data['all_bins']:
+        elementsInBin = []
+        for i in data['all_items']:
+            if x[i, b].solution_value() > 0:
+                elementsInBin.append(blocks[i])
+        blocksAtBins[b] = elementsInBin
+    return blocksAtBins
