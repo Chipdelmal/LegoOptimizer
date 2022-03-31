@@ -1,6 +1,8 @@
 
-import constants as cst
+from time import time
 from itertools import groupby
+from ortools.linear_solver import pywraplp
+import constants as cst
 
 ###############################################################################
 # Auxiliary
@@ -19,7 +21,7 @@ def flatten(t):
 # Optimization
 #   https://developers.google.com/optimization/bin/multiple_knapsack
 ###############################################################################
-def genSolverData(gaps, blocks, values=cst.NULL_BLOCK_VALUES):
+def genSolverData(gaps, blocks, values=cst.LARGE_FIRST_BLOCK_VALUES):
     data = {}
     data['weights'] = blocks
     data['values'] = [values[i] for i in blocks]
@@ -68,3 +70,31 @@ def convertSolution(data, x, blocks):
                 elementsInBin.append(blocks[i])
         blocksAtBins[b] = elementsInBin
     return blocksAtBins
+
+
+def solveColor(
+        gaps, blocks, 
+        values=cst.LARGE_FIRST_BLOCK_VALUES, verbose=True
+    ):
+    # Start timer and generate data structure for solver ----------------------
+    tic = time()
+    data = genSolverData(gaps, blocks, values=values)
+    # Setup problem -----------------------------------------------------------
+    solver = pywraplp.Solver.CreateSolver('SCIP')
+    (x, solver) = genSolverXVector(data, solver)
+    (x, solver) = setSolverConstraints(data, x, solver)
+    (x, solver, objective) = setSolverObjective(data, x, solver)
+    # Solve problem -----------------------------------------------------------
+    status = solver.Solve()
+    # Timing ------------------------------------------------------------------
+    toc = time()
+    runTime = (toc-tic)/60
+    # Assemble and return solution --------------------------------------------
+    solution = convertSolution(data, x, blocks)
+    if verbose:
+        print(f"Timing for {len(gaps):2d} elements: {(toc-tic)/60:.2f} mins")
+    outDict = {
+        'timing': runTime,
+        'solution': solution
+    }
+    return outDict

@@ -43,8 +43,14 @@ for dix in dictVals:
 pLengths = {i: len(pVectors[i]) for i in pVectors.keys()}
 ###############################################################################
 # Export vectors
+# -----------------------------------------------------------------------------
+#   colorMapper: RGB tuple to color-index mapper dictionary
+#   colorDeMapper: Color-index to RGB mapper dictionary
+#   imageMapped: Color-index pixel representation of the original image
+#   runLengthVectors: Run-length encoded vectors by color
+#   runLengthLengths: Run-length lengths per color
 ###############################################################################
-outDict = {
+pDict = {
     'colorMapper': colDict,
     'colorDeMapper': colDeDict,
     'imageMapped': pixDict,
@@ -52,25 +58,4 @@ outDict = {
     'runLengthLengths': pLengths
 }
 pklFName = path.join(fPath, fName.split('.png')[0])+'.pkl'
-dump(outDict, pklFName)
-
-ix = 7
-###############################################################################
-# Problem Input
-###############################################################################
-(gaps, nel) = (pVectors[ix], pLengths[ix])
-blocks = [1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 5, 6, 4, 3, 5, 6]*100
-values = cst.LARGER_FIRST_BLOCK_VALUES
-data = fun.genSolverData(gaps, blocks, values=values)
-###############################################################################
-# Problem Setup
-###############################################################################
-tic = time.time()
-solver = pywraplp.Solver.CreateSolver('SCIP')
-(x, solver) = fun.genSolverXVector(data, solver)
-(x, solver) = fun.setSolverConstraints(data, x, solver)
-(x, solver, objective) = fun.setSolverObjective(data, x, solver)
-status = solver.Solve()
-toc = time.time()
-print(f"Timing for {nel:2d} elements: {(toc-tic)/60:.2f} mins")
-fun.convertSolution(data, x, blocks)
+dump(pDict, pklFName)
