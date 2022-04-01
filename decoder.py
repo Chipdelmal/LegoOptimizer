@@ -56,7 +56,7 @@ for rix in range(rowsNum):
             decodedRow.append(dec)
         else:
             # Handles the case where blocks were missing for encoding
-            print(f"Missmatch! ({solLength}/{orgLength})")
+            # print(f"Missmatch! ({solLength}/{orgLength})")
             # Missing elements are returned as negative
             if len(solBlocks) > 0:
                 dec = (rgb, solBlocks+[solLength-orgLength])
