@@ -12,7 +12,7 @@ if fun.isNotebook():
 else:
     (fPath, fName) = (argv[1], argv[2])
 values = cst.BALANCED_BLOCK_VALUES
-blocks = cst.SMALL_BLOCKS_SUPPLY
+blocks = cst.LIMITLESS_BLOCKS_SUPPLY
 VERBOSE = True
 ###############################################################################
 # Load data
@@ -29,12 +29,10 @@ colorsNum = len(pDict['runLengthVectors'])
 for colorIx in range(colorsNum):
     if VERBOSE:
         cHex = fun.rgbToHex(pDict['colorDeMapper'][colorIx])
-        print(
-            colored(
+        print(colored(
                 f"+ Solved for #{cHex} ({(colorIx+1):03d}/{colorsNum:03d})", 
                 'blue'
-            ), end = ' '
-        )
+            ), end = ' ')
     # Solve entry -------------------------------------------------------------
     gaps = pDict['runLengthVectors'][colorIx]
     solution[colorIx] = fun.solveColor(

@@ -48,10 +48,8 @@ for rix in range(len(decoded)):
             if (w > 0):
                 rectCol = (0, 0, 0, 127)
             else:
-                print(w)
                 rectCol = (127, 0, 0, 127)
                 w = abs(w)
-                print(w)
             blocks = (tlCrnr, (tlCrnr[0]+w, tlCrnr[1]+h))
             # Draw the resulting block 
             draw = ImageDraw.Draw(img)
