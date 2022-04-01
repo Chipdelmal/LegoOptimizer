@@ -1,6 +1,8 @@
 from itertools import groupby
 
-
+###############################################################################
+# List-Processing
+###############################################################################
 def runLength(s_list):
     # https://www.w3resource.com/python-exercises/list/python-data-type-list-exercise-75.php
     grp = groupby(s_list)
