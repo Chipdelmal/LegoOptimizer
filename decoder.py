@@ -45,7 +45,7 @@ for rix in range(rowsNum):
         ixCol = rowMap[ixH]
         # Get the solution's list of encoded blocks
         (solLenIdeal, solBlocks) = mDict[ixCol].pop(0)
-        # Check length of gaps versus suggested blocks (needs action for error case)
+        # Check length of gaps versus suggested blocks
         orgLength = rLens[ixCol].pop(0)
         rgb = pDict['colorDeMapper'][ixCol]
         # Gets the RGB value of the processed color and the block elements
