@@ -11,7 +11,7 @@ import functions as fun
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'DWN-Resurrect_32-rocketsPalette.png')
+    (fPath, fName) = ('./demo', 'sami.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
 SCALER = 10
@@ -48,15 +48,17 @@ for rix in range(len(decoded)):
             if (w > 0):
                 rectCol = (0, 0, 0, 127)
             else:
+                print(w)
                 rectCol = (127, 0, 0, 127)
                 w = abs(w)
+                print(w)
             blocks = (tlCrnr, (tlCrnr[0]+w, tlCrnr[1]+h))
             # Draw the resulting block 
             draw = ImageDraw.Draw(img)
             draw.rectangle(blocks, fill=(*bColor, int(255*ALPHA)))
             draw.rectangle(blocks, outline=rectCol, width=2)
             # Shift column iterator
-            col = col + bLensVct[bCols]
+            col = col + abs(bLensVct[bCols])
 ###############################################################################
 # Load image and decoded data
 ###############################################################################
