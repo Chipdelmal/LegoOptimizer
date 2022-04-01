@@ -11,7 +11,7 @@ if fun.isNotebook():
     (fPath, fName) = ('./demo', 'sami.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
-values = cst.LARGE_FIRST_BLOCK_VALUES
+values = cst.BALANCED_BLOCK_VALUES
 blocks = cst.LIMITLESS_BLOCKS_SUPPLY
 VERBOSE = True
 ###############################################################################
@@ -33,8 +33,7 @@ for colorIx in range(colorsNum):
             colored(
                 f"+ Solved for #{cHex} ({(colorIx+1):03d}/{colorsNum:03d})", 
                 'blue'
-            ), 
-            end = ' '
+            ), end = ' '
         )
     # Solve entry -------------------------------------------------------------
     gaps = pDict['runLengthVectors'][colorIx]

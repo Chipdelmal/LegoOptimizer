@@ -69,7 +69,6 @@ def setSolverConstraints(data, x, solver):
                 for i in data['all_items']) <= data['bin_capacities'][b])
     return (x, solver)
 
-
 def setSolverObjective(data, x, solver):
     objective = solver.Objective()
     for i in data['all_items']:
