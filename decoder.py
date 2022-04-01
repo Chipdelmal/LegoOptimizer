@@ -53,16 +53,17 @@ for rix in range(rowsNum):
         if (solLength == orgLength):
             # Base case where a solution was found for the encoding
             dec = (rgb, solBlocks)
-            decodedRow.append(solBlocks)
+            decodedRow.append(dec)
         else:
             # Handles the case where blocks were missing for encoding
             print(f"Missmatch! ({solLength}/{orgLength})")
-            dec = (rgb, solBlocks)
             # Missing elements are returned as negative
             if len(solBlocks) > 0:
-                decodedRow.append(solBlocks+[solLength-orgLength])
+                dec = (rgb, solBlocks+[solLength-orgLength])
+                decodedRow.append(dec)
             else:
-                decodedRow.append([-orgLength])
+                dec = (rgb, solBlocks+[-orgLength])
+                decodedRow.append(dec)
         # Update the iterator
         ixH = ixH + orgLength
     decodedImg.append(decodedRow)

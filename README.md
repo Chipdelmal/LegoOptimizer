@@ -1,7 +1,8 @@
 # LegoOptimizer
 
 
-Steps:
+
+## Pipeline
 
 1. Image Preprocessing: quantize, downsample and export image
 2. [Data Preprocess](./preprocess.py): color to key mapping, run-length encoding, export problem vectors
@@ -10,7 +11,7 @@ Steps:
 5. Image visualization: reconstruct image with block highlights
 
 
-# Sources
+## Sources
 
 * https://www.educative.io/m/find-all-sum-combinations
 * https://stackoverflow.com/questions/42422921/multiple-subset-sum-calculation
