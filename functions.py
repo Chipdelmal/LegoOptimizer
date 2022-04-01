@@ -107,12 +107,18 @@ def solveColor(
     rTime = (toc-tic)/60
     # Assemble and return solution --------------------------------------------
     solution = convertSolution(data, x, blocks)
+    # print(solution)
     if verbose:
         (gLen, gNum) = (len(gaps), sum(gaps))
+        if (gNum==sum(flatten(solution))):
+            pCol = 'green'
+        else:
+            pCol = 'red'
+        # Print summary to terminal -------------------------------------------
         print(
             colored(
                 f"[{rTime:.2f} mins for {gLen:04d} elements with {gNum:04d} length]",
-                'red'
+                pCol
             )
         )
     outDict = solution

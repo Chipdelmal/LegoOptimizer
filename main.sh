@@ -5,7 +5,7 @@ FNAME='sami.png'
 
 echo "* Reshaping image data..."
 python preprocess.py $PTH $FNAME
-echo "* Optimizing combinatorics..."
+echo "* Optimizing combinatorics (could take a while)..."
 python optimizer.py $PTH $FNAME
 echo "* Decoding image..."
 python decoder.py $PTH $FNAME

@@ -15,7 +15,7 @@ if fun.isNotebook():
 else:
     (fPath, fName) = (argv[1], argv[2])
 SCALER = 10
-ALPHA = 1
+ALPHA = .9
 ###############################################################################
 # Load image and decoded data
 ###############################################################################
@@ -29,14 +29,12 @@ decoded = load(dFName)
 #   ADD CLAUSE FOR NEGATIVE NUMBERS!!!!!!!!!!!!!!!!!!!!!!!
 ###############################################################################
 # Iterate through the decoded array (rix: row index)
-rix = 2
 for rix in range(len(decoded)):
     # Get row information (dRow: decoded row)
     dRow = decoded[rix]
     # Get the iterators started
     (row, col) = (rix, 0)
     # Load info from the block index
-    bix = 1
     for bix in range(len(dRow)):
         (bColor, bLensVct) = dRow[bix]
         bColsLen = len(bLensVct)
@@ -45,11 +43,18 @@ for rix in range(len(decoded)):
             tlCrnr = (SCALER*col, SCALER*row)
             # The length of the block is defined by the array (height is constant for all)
             (w, h) = (bLensVct[bCols]*SCALER, 1*SCALER)
+            # print(w)
+            if (w > 0):
+                rectCol = (0, 0, 0, 127)
+            else:
+                rectCol = (127, 0, 0, 127)
+                w = abs(w)
             blocks = (tlCrnr, (tlCrnr[0]+w, tlCrnr[1]+h))
             # Draw the resulting block 
-            draw = ImageDraw.Draw(img)  
+            draw = ImageDraw.Draw(img)
+            bColor = [max((i-1), 0) for i in bColor]
             draw.rectangle(blocks, fill=(*bColor, int(255*ALPHA)))
-            draw.rectangle(blocks, outline=(0, 0, 0, 127), width=2)
+            draw.rectangle(blocks, outline=rectCol, width=2)
             # Shift column iterator
             col = col + bLensVct[bCols]
 ###############################################################################
