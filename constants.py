@@ -12,9 +12,17 @@ SMALL_FIRST_BLOCK_VALUES = {1:10, 2:9, 3: 8, 4:7, 5:6, 6:5, 7:4, 8:3}
 LARGE_FIRST_BLOCK_VALUES = {1:1, 2:3, 3:8, 4:10, 5:12, 6:15, 7:17, 8:20}
 
 ###############################################################################
-# Large blocks supply
+# Blocks Supply Pools
 ###############################################################################
+# Uniform blocks supply -------------------------------------------------------
 (QTY, MAX_LEN) = (200, 8)
 LIMITLESS_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
     LIMITLESS_BLOCKS_SUPPLY.extend([i]*QTY)
+
+# Mostly small blocks supply --------------------------------------------------
+(QTY, MAX_LEN) = (10, 8)
+SMALL_BLOCKS_SUPPLY = []
+for i in range(1, MAX_LEN+1):
+    SMALL_BLOCKS_SUPPLY.extend([i]*(QTY*(MAX_LEN-i+1)))
+SMALL_BLOCKS_SUPPLY

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PTH='./demo'
-FNAME='DWN-SGBM1A_4-sami.png'
+FNAME='sami.png'
 
 echo "* Reshaping image data..."
 python preprocess.py $PTH $FNAME
