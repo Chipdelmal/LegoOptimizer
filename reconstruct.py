@@ -11,7 +11,7 @@ import functions as fun
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'sami.png')
+    (fPath, fName) = ('./demo', 'DWN-Resurrect_32-rocketsPalette.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
 SCALER = 10
@@ -20,6 +20,7 @@ ALPHA = .9
 # Load image and decoded data
 ###############################################################################
 img = Image.open(path.join(fPath, fName))
+img = img.convert('RGBA')
 img = img.resize((np.array(img.size)*SCALER).astype(int), resample=0)
 # Read decoded data -----------------------------------------------------------
 dFName = path.join(fPath, fName.split('.png')[0])+'_Decoded.pkl'
@@ -52,7 +53,6 @@ for rix in range(len(decoded)):
             blocks = (tlCrnr, (tlCrnr[0]+w, tlCrnr[1]+h))
             # Draw the resulting block 
             draw = ImageDraw.Draw(img)
-            bColor = [max((i-1), 0) for i in bColor]
             draw.rectangle(blocks, fill=(*bColor, int(255*ALPHA)))
             draw.rectangle(blocks, outline=rectCol, width=2)
             # Shift column iterator

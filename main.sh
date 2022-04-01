@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PTH='./demo'
-FNAME='sami.png'
+FNAME='DWN-Resurrect_32-rocketsPalette.png'
 
 echo "* Reshaping image data..."
 python preprocess.py $PTH $FNAME
