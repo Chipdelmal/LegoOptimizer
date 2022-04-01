@@ -15,28 +15,34 @@ if fun.isNotebook():
 else:
     (fPath, fName) = (argv[1], argv[2])
 SCALER = 10
+ALPHA = .75
 ###############################################################################
 # Load image and decoded data
 ###############################################################################
-# Read original image to matplotlib -------------------------------------------
-# img = mpimg.imread(path.join(fPath, fName))
-# Read original image to PIL --------------------------------------------------
 img = Image.open(path.join(fPath, fName))
 img = img.resize((np.array(img.size)*SCALER).astype(int), resample=0)
-# Read original image to opencv -----------------------------------------------
-# img = cv2.imread(path.join(fPath, fName))
-# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-# cv2.imshow('ellipse Image',img)
 # Read decoded data -----------------------------------------------------------
 dFName = path.join(fPath, fName.split('.png')[0])+'_Decoded.pkl'
 decoded = load(dFName)
 ###############################################################################
 # Annotate rectangles
 ###############################################################################
-tlCrnr = (0, 0)
-(w, h) = (3*SCALER, 1*SCALER)
+# Iterate through the decoded array
+
+rix = 31
+dRow = decoded[rix]
+
+(row, col) = (rix, 0)
+
+
+bix = 0
+(bColor, bLen) = dRow[bix]
+
+tlCrnr = (SCALER*col, SCALER*row)
+(w, h) = (bLen[0]*SCALER, 1*SCALER)
 blocks = (tlCrnr, (tlCrnr[0]+w, tlCrnr[1]+h))
 
 draw = ImageDraw.Draw(img, "RGBA")  
-draw.rectangle(blocks, outline=(0, 0, 0, 127), width=3)
+draw.rectangle(blocks, fill=(*bColor, int(255*ALPHA)))
+draw.rectangle(blocks, outline=(0, 0, 0, 127), width=2)
 img
