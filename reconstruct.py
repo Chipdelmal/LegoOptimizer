@@ -25,7 +25,8 @@ img = img.resize((np.array(img.size)*SCALER).astype(int), resample=0)
 dFName = path.join(fPath, fName.split('.png')[0])+'_Decoded.pkl'
 decoded = load(dFName)
 ###############################################################################
-# Annotate rectangles
+# Annotate rectangles 
+#   ADD CLAUSE FOR NEGATIVE NUMBERS!!!!!!!!!!!!!!!!!!!!!!!
 ###############################################################################
 # Iterate through the decoded array (rix: row index)
 rix = 2
@@ -45,10 +46,14 @@ for rix in range(len(decoded)):
             # The length of the block is defined by the array (height is constant for all)
             (w, h) = (bLensVct[bCols]*SCALER, 1*SCALER)
             blocks = (tlCrnr, (tlCrnr[0]+w, tlCrnr[1]+h))
-            # Draw the resulting block
+            # Draw the resulting block 
             draw = ImageDraw.Draw(img)  
             draw.rectangle(blocks, fill=(*bColor, int(255*ALPHA)))
             draw.rectangle(blocks, outline=(0, 0, 0, 127), width=2)
             # Shift column iterator
             col = col + bLensVct[bCols]
-img
+###############################################################################
+# Load image and decoded data
+###############################################################################
+dFName = path.join(fPath, fName.split('.png')[0])+'_Lego.png'
+img.save(dFName)

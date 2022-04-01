@@ -12,7 +12,7 @@ if fun.isNotebook():
 else:
     (fPath, fName) = (argv[1], argv[2])
 values = cst.LARGE_FIRST_BLOCK_VALUES
-blocks = [1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 5, 6, 4, 3, 5, 6]*100
+blocks = cst.LIMITLESS_BLOCKS_SUPPLY
 VERBOSE = True
 ###############################################################################
 # Load data
