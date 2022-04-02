@@ -11,7 +11,7 @@ import functions as fun
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'sami.png')
+    (fPath, fName) = ('./demo', 'DWN-Resurrect_32-rocketsPalette.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
 SCALER = 10
@@ -40,6 +40,8 @@ for y in range(0, img.height, SCALER):
 ###############################################################################
 # Annotate rectangles 
 ###############################################################################
+# Add frame all around image --------------------------------------------------
+draw.rectangle(((0, 0), (img.width-LW/2, img.height-LW/2)), outline=RB_COL, width=LW)
 # Iterate through the decoded array (rix: row index)
 for rix in range(len(decoded)):
     # Get row information (dRow: decoded row)
@@ -64,8 +66,6 @@ for rix in range(len(decoded)):
             draw.rectangle(blocks, outline=rectCol, width=LW)
             # Shift column iterator
             col = col + abs(bLensVct[bCols])
-# Add frame all around image --------------------------------------------------
-draw.rectangle(((0, 0), (470-LW/2, 480-LW/2)), outline=RB_COL, width=LW)
 ###############################################################################
 # Export Resulting Image
 ###############################################################################
