@@ -1,8 +1,10 @@
 #!/bin/bash
 
 PTH='./demo'
-FNAME='DWN-Resurrect_32-rocketsPalette.png'
+FNAME='sami.png'
 
+echo "* Quantize and downscale image..."
+python pimage.py $PTH $FNAME
 echo "* Reshaping image data..."
 python preprocess.py $PTH $FNAME
 echo "* Optimizing combinatorics (could take a while)..."

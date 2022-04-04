@@ -11,7 +11,7 @@ import functions as fun
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'DWN-Resurrect_32-rocketsPalette.png')
+    (fPath, fName) = ('./demo', 'sami.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
 SCALER = 10
@@ -31,12 +31,12 @@ decoded = load(dFName)
 # Add block grid (currently not working)
 ###############################################################################
 draw = ImageDraw.Draw(img)
-for x in range(0, img.width, SCALER):
-    line = ((x, 0), (x, img.height))
-    draw.line(line, fill=BK_COL, width=LG)
-for y in range(0, img.height, SCALER):
-    line = ((0, y), (img.width, y))
-    draw.line(line, fill=BK_COL, width=LG)
+# for x in range(0, img.width, SCALER):
+#     line = ((x, 0), (x, img.height))
+#     draw.line(line, fill=BK_COL, width=LG)
+# for y in range(0, img.height, SCALER):
+#     line = ((0, y), (img.width, y))
+#     draw.line(line, fill=BK_COL, width=LG)
 ###############################################################################
 # Annotate rectangles 
 ###############################################################################

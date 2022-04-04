@@ -14,7 +14,7 @@ else:
 ###############################################################################
 # Load image
 ###############################################################################
-img = cv2.imread(path.join(fPath, fName))
+img = cv2.imread(path.join(fPath, fName.split(".png")[0]+'_DWN.png'))
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 ###############################################################################
 # Process image for colors
