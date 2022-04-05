@@ -27,7 +27,7 @@ for i in range(1, MAX_LEN+1):
     SMALL_BLOCKS_SUPPLY.extend([i]*(QTY*(MAX_LEN-i+1)))
 
 # Mostly large blocks supply --------------------------------------------------
-(QTY, MAX_LEN) = (10, 8)
+(QTY, MAX_LEN) = (20, 8)
 LARGE_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
     LARGE_BLOCKS_SUPPLY.extend([i]*(QTY*(i)))

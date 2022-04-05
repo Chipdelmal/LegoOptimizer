@@ -48,7 +48,7 @@ for rix in range(len(decoded)):
             if (w > 0):
                 rectCol = (0, 0, 0, 127)
             else:
-                rectCol = (127, 0, 0, 127)
+                rectCol = (255, 0, 0, 255)
                 w = abs(w)
             blocks = (tlCrnr, (tlCrnr[0]+w, tlCrnr[1]+h))
             # Draw the resulting block 

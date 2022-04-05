@@ -12,7 +12,7 @@ if fun.isNotebook():
 else:
     (fPath, fName) = (argv[1], argv[2])
 values = cst.BALANCED_BLOCK_VALUES
-blocks = cst.LIMITLESS_BLOCKS_SUPPLY
+blocks = cst.LARGE_BLOCKS_SUPPLY
 VERBOSE = True
 ###############################################################################
 # Load data
