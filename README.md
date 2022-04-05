@@ -14,7 +14,7 @@ Unfortunately, this is not as easy of a problem as it looks at first glance and 
 
 These steps are taken sequentially in the [main.sh](./main.sh) bash script:
 
-1. Image Preprocessing: quantize, downsample and export image
+1. [Image Preprocessing](./pimage.py): quantize, downsample and export image
 2. [Data Preprocess](./preprocess.py): color to key mapping, run-length encoding, export problem vectors
 3. [Optimization](./optimizer.py): solve multiple-knappsack problem
 4. [Postproces](./decoder.py): decode run-length to image reconstruct
