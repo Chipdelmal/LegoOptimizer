@@ -12,7 +12,7 @@ if fun.isNotebook():
 else:
     (fPath, fName) = (argv[1], argv[2])
 SIZE = cst.DOWNSCALE_SIZE
-PALETTE = cst.WIDE_COLORS
+PALETTE = cst.LEGO_LIMITED
 ###############################################################################
 # Load image
 ###############################################################################

@@ -15,7 +15,7 @@ LARGE_FIRST_BLOCK_VALUES = {1:1, 2:3, 3:8, 4:10, 5:12, 6:15, 7:17, 8:20}
 # Blocks Supply Pools
 ###############################################################################
 # Uniform blocks supply -------------------------------------------------------
-(QTY, MAX_LEN) = (200, 8)
+(QTY, MAX_LEN) = (250, 8)
 LIMITLESS_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
     LIMITLESS_BLOCKS_SUPPLY.extend([i]*QTY)
@@ -59,6 +59,14 @@ WIDE_COLORS = (
     '#934d4e', '#b77365', '#dd9a7c', '#ffc498', '#fffacd', '#e4db99', 
     '#c8bc67', '#a7a041', '#72883e', '#3c703b', '#0b0b0b', '#2f2f2f', 
     '#535353', '#7b7b7b', '#a5a5a5', '#d1d1d1', '#ffffff'
+)
+GB_COLORS = (
+    '#040c06', '#112318', '#1e3a29', '#305d42', '#4d8061', '#89a257', 
+    '#bedc7f', '#eeffcc'
+)    
+SGBA_COLORS = ('#ffe8cf', '#df904f', '#af2850', '#301850')
+LEGO_LIMITED = (
+    '#040404', '#F4F4F4', '#FCAC00', '#969696', '#AA7D55', '#372100', '#fffacd'
 )
 
 ###############################################################################

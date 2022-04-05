@@ -21,7 +21,7 @@ BLOCKS_ALPHA = 1
 ###############################################################################
 # Load image and decoded data
 ###############################################################################
-img = Image.open(path.join(fPath, fName))
+img = Image.open(path.join(fPath, fName.split(".png")[0]+'_DWN.png'))
 img = img.convert('RGBA')
 img = img.resize((np.array(img.size)*SCALER).astype(int), resample=0)
 # Read decoded data -----------------------------------------------------------
