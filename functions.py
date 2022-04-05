@@ -1,7 +1,9 @@
 
+import numpy as np
 from time import time
 from termcolor import colored
 from itertools import groupby
+from PIL import Image, ImageColor
 from ortools.linear_solver import pywraplp
 import constants as cst
 
@@ -18,10 +20,6 @@ def flatten(t):
     # https://stackoverflow.com/questions/952914/how-to-make-a-flat-list-out-of-a-list-of-lists
     return [item for sublist in t for item in sublist]
 
-def rgbToHex(rgb):
-    # https://www.codespeedy.com/convert-rgb-to-hex-color-code-in-python/
-    return '%02x%02x%02x' % rgb
-
 def isNotebook():
     try:
         shell = get_ipython().__class__.__name__
@@ -33,6 +31,43 @@ def isNotebook():
             return False
     except NameError:
         return False
+
+def isInt(element):
+    try:
+        int(element)
+        return True
+    except ValueError:
+        return False
+
+
+###############################################################################
+# Image Preprocessing
+###############################################################################
+def rgbToHex(rgb):
+    # https://www.codespeedy.com/convert-rgb-to-hex-color-code-in-python/
+    return '%02x%02x%02x' % rgb
+
+def paletteReshape(colorPalette):
+    # Hex to entries
+    rgbTuples = [ImageColor.getrgb(i) for i in colorPalette]
+    pal = [item for sublist in rgbTuples for item in sublist]
+    entries = int(len(pal)/3)
+    # Palette swatch
+    palette = pal + [0,]*(256-entries)*3
+    resnp = np.arange(entries, dtype=np.uint8).reshape(entries, 1)
+    resim = Image.fromarray(resnp, mode='P')
+    resim.putpalette(palette)
+    # Return
+    return (len(pal), resim)
+
+def quantizeImage(img, colorsNumber=255, colorPalette=None, method=0, dither=False):
+    if colorPalette is None:
+        img = img.quantize(colorsNumber, method=method, dither=dither)
+    else:
+        img = img.quantize(
+            palette=colorPalette, method=method, dither=dither
+        )
+    return img
 
 ###############################################################################
 # Optimization
