@@ -1,8 +1,14 @@
 
 ###############################################################################
+# Image
+############################################################################### 
+LEGO_DOWNSCALE_SIZE = (50, 50)
+
+###############################################################################
 # Weight dictionaries for block preference
 # -----------------------------------------------------------------------------
 #   NULL: Gives no priority for any particular type of block
+#   BALANCED: Prioritizes medium-sized blocks
 #   SMALL_FIRST: Prioritizes using smaller blocks over large ones
 #   LARGE_FIRST (default): Prioritizes using larger blocks over smaller ones
 ###############################################################################
@@ -15,19 +21,19 @@ LARGE_FIRST_BLOCK_VALUES = {1:1, 2:3, 3:8, 4:10, 5:12, 6:15, 7:17, 8:20}
 # Blocks Supply Pools
 ###############################################################################
 # Uniform blocks supply -------------------------------------------------------
-(QTY, MAX_LEN) = (250, 8)
+(QTY, MAX_LEN) = (100, 8)
 LIMITLESS_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
     LIMITLESS_BLOCKS_SUPPLY.extend([i]*QTY)
 
 # Mostly small blocks supply --------------------------------------------------
-(QTY, MAX_LEN) = (10, 8)
+(QTY, MAX_LEN) = (100, 8)
 SMALL_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
     SMALL_BLOCKS_SUPPLY.extend([i]*(QTY*(MAX_LEN-i+1)))
 
 # Mostly large blocks supply --------------------------------------------------
-(QTY, MAX_LEN) = (10, 8)
+(QTY, MAX_LEN) = (100, 8)
 LARGE_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
     LARGE_BLOCKS_SUPPLY.extend([i]*(QTY*(i)))
@@ -68,8 +74,3 @@ SGBA_COLORS = ('#ffe8cf', '#df904f', '#af2850', '#301850')
 LEGO_LIMITED = (
     '#040404', '#F4F4F4', '#FCAC00', '#969696', '#AA7D55', '#372100', '#fffacd'
 )
-
-###############################################################################
-# Image
-############################################################################### 
-DOWNSCALE_SIZE = (50, 50)

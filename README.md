@@ -12,9 +12,18 @@ Unfortunately, this is not as easy of a problem as it looks at first glance and 
 
 ## Pipeline
 
-These steps are taken sequentially in the [main.sh](./main.sh) bash script:
+To get the code up and running, have a look at the [selections.py](./selections.py) and [constants](./constants.py) files to setup the parameters of your portraits (might streamline it a bit in the future when I have some time).
 
-1. Image Preprocessing: quantize, downsample and export image
+Now, just run the [main.sh](./main.sh) file with:
+
+``` bash
+main.sh FILE_NAME FILE_PATH
+```
+
+
+This bash wrapper runs the following scripts in order:
+
+1. [Image Preprocessing](./pimage.py): quantize, downsample and export image
 2. [Data Preprocess](./preprocess.py): color to key mapping, run-length encoding, export problem vectors
 3. [Optimization](./optimizer.py): solve multiple-knappsack problem
 4. [Postproces](./decoder.py): decode run-length to image reconstruct
@@ -38,6 +47,7 @@ Working in an independent virtual environment like [anaconda](https://www.anacon
 ## To Do
 
 * Break the missing rectangles into lego blocks
+* Code the terminal wrapper so that inputs don't have to be changed in the python [selections](./selections.py) file
 
 ## Author
 

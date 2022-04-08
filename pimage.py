@@ -1,18 +1,20 @@
 
 from os import path
 from sys import argv
-from compress_pickle import dump
-from PIL import Image, ImageColor
+from PIL import Image
 import functions as fun
 import constants as cst
+import selections as sel
 
 
 if fun.isNotebook():
     (fPath, fName) = ('./demo', 'sami.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
-SIZE = cst.DOWNSCALE_SIZE
-PALETTE = cst.LEGO_LIMITED
+###############################################################################
+# Get user selections from file
+###############################################################################
+(SIZE, PALETTE) = (sel.USER_SEL['size'], sel.USER_SEL['palette'])
 ###############################################################################
 # Load image
 ###############################################################################
@@ -34,5 +36,5 @@ else:
 #   Image.NEAREST, Image.BILINEAR, Image.BICUBIC, Image.LANCZOS, Image.NEAREST
 ###############################################################################
 pthDWN = path.join(fPath, fName.split('.png')[0]+'_DWN.png')
-imgDwn = imgQnt.resize(SIZE, resample=Image.BILINEAR)
+imgDwn = imgQnt.resize(SIZE, resample=Image.LANCZOS)
 imgDwn.save(pthDWN)

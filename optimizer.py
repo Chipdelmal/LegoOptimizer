@@ -3,16 +3,18 @@ from os import path
 from sys import argv
 from termcolor import colored
 from compress_pickle import dump, load
-import constants as cst
 import functions as fun
+import selections as sel
 
 
 if fun.isNotebook():
     (fPath, fName) = ('./demo', 'sami.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
-values = cst.BALANCED_BLOCK_VALUES
-blocks = cst.LIMITLESS_BLOCKS_SUPPLY
+###############################################################################
+# Get user selections from file
+###############################################################################
+(VALUES, BLOCKS) = (sel.USER_SEL['priority'], sel.USER_SEL['blocks'])
 VERBOSE = True
 ###############################################################################
 # Load data
@@ -36,7 +38,7 @@ for colorIx in range(colorsNum):
     # Solve entry -------------------------------------------------------------
     gaps = pDict['runLengthVectors'][colorIx]
     solution[colorIx] = fun.solveColor(
-        gaps, blocks, values=values, verbose=VERBOSE
+        gaps, BLOCKS, values=VALUES, verbose=VERBOSE
     )
 ###############################################################################
 # Export solution

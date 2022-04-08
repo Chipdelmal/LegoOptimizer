@@ -4,20 +4,22 @@ import numpy as np
 from os import path
 from sys import argv
 from PIL import Image, ImageDraw
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 from compress_pickle import dump, load
 import functions as fun
-
+import selections as sel
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'sami.png')
+    (fPath, fName) = ('./demo', 'samiC.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
-SCALER = 10
+
 BLOCKS_ALPHA = 1
-(RB_COL, RN_COL, BK_COL) = ((0, 0, 0, 127), (255, 0, 0, 255), (255, 255, 255, 0))
+(RB_COL, RN_COL, BK_COL) = ((0, 0, 0, 255), (255, 0, 0, 255), (255, 255, 255, 0))
 (LW, LG) = (2, 1)
+###############################################################################
+# Get user selections from file
+###############################################################################
+SCALER = sel.USER_SEL['scaler']
 ###############################################################################
 # Load image and decoded data
 ###############################################################################
@@ -28,7 +30,7 @@ img = img.resize((np.array(img.size)*SCALER).astype(int), resample=0)
 dFName = path.join(fPath, fName.split('.png')[0])+'_Decoded.pkl'
 decoded = load(dFName)
 ###############################################################################
-# Add block grid (currently not working)
+# Add block grid
 ###############################################################################
 draw = ImageDraw.Draw(img)
 # for x in range(0, img.width, SCALER):
