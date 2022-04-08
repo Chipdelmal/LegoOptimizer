@@ -2,7 +2,7 @@
 ###############################################################################
 # Image
 ############################################################################### 
-LEGO_DOWNSCALE_SIZE = (50, 50)
+LEGO_DOWNSCALE_SIZE = (25, 25)
 
 ###############################################################################
 # Weight dictionaries for block preference
@@ -20,20 +20,18 @@ LARGE_FIRST_BLOCK_VALUES = {1:1, 2:3, 3:8, 4:10, 5:12, 6:15, 7:17, 8:20}
 ###############################################################################
 # Blocks Supply Pools
 ###############################################################################
+(QTY, MAX_LEN) = (250, 5)
 # Uniform blocks supply -------------------------------------------------------
-(QTY, MAX_LEN) = (100, 8)
 LIMITLESS_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
     LIMITLESS_BLOCKS_SUPPLY.extend([i]*QTY)
 
 # Mostly small blocks supply --------------------------------------------------
-(QTY, MAX_LEN) = (100, 8)
 SMALL_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
     SMALL_BLOCKS_SUPPLY.extend([i]*(QTY*(MAX_LEN-i+1)))
 
 # Mostly large blocks supply --------------------------------------------------
-(QTY, MAX_LEN) = (100, 8)
 LARGE_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
     LARGE_BLOCKS_SUPPLY.extend([i]*(QTY*(i)))

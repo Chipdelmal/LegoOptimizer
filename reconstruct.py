@@ -1,5 +1,4 @@
 
-import cv2
 import numpy as np
 from os import path
 from sys import argv
@@ -9,7 +8,7 @@ import functions as fun
 import selections as sel
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'samiC.png')
+    (fPath, fName) = ('./demo', 'awoofy.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
 
@@ -73,3 +72,4 @@ for rix in range(len(decoded)):
 ###############################################################################
 dFName = path.join(fPath, fName.split('.png')[0])+'_Lego.png'
 img.save(dFName)
+
