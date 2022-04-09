@@ -1,16 +1,19 @@
 
 import cv2
+from math import ceil
 import itertools
 from os import path
 from sys import argv
 from compress_pickle import dump
+from termcolor import colored
 import functions as fun
-
+import selections as sel
 
 if fun.isNotebook():
     (fPath, fName) = ('./demo', 'sami.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
+VERBOSE = True
 ###############################################################################
 # Load image
 ###############################################################################
@@ -58,3 +61,38 @@ pDict = {
 }
 pklFName = path.join(fPath, fName.split('.png')[0])+'.pkl'
 dump(pDict, pklFName)
+###############################################################################
+# Terminal Summary
+###############################################################################
+pSums = {i: sum(pVectors[i]) for i in pVectors.keys()}
+if VERBOSE:
+    print(colored(f'+ Vector lengths: {pSums}', 'blue'))
+###############################################################################
+# Split longer entries
+###############################################################################
+(colDict, colDeDict, scrambler) = fun.genScrambleDicts(
+    pDict, threshold=sel.USER_SEL['lengthMax']
+)
+
+
+colDict
+
+
+ixsMax = max(dictVals)
+ovrLen = {ix: pSums[ix] for ix in list(pSums.keys())}
+ixsNeed = {ix: ceil(pSums[ix]/THS) for ix in list(ovrLen.keys())}
+
+scrambler = {}
+cKey = ixsMax
+for ix in list(ixsNeed.keys()):
+    cKeyNeed = ixsNeed[ix] 
+    if cKeyNeed > 1:
+        scrambler[ix] = [ix]
+        for ksNeed in range(cKeyNeed-1):
+            cKey = cKey + 1
+            colDeDict[cKey] = colDeDict[ix]
+            scrambler[ix] = scrambler[ix]+[cKey]
+    else:
+        scrambler[ix] = [ix]
+(colDeDict, scrambler)
+colDict = {ix: list(set(scrambler[v]+[v])) for (ix, v) in colDict.items()}

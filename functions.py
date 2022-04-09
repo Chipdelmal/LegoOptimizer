@@ -1,6 +1,8 @@
 
 import numpy as np
+from math import ceil
 from time import time
+from copy import deepcopy
 from termcolor import colored
 from itertools import groupby
 import matplotlib.pyplot as plt
@@ -40,6 +42,37 @@ def isInt(element):
         return True
     except ValueError:
         return False
+
+###############################################################################
+# Data Preprocessing
+###############################################################################
+def genScrambleDicts(pDict, threshold=200):
+    (colDict, colDeDict, pVectors) = (
+        deepcopy(pDict['colorMapper']), 
+        deepcopy(pDict['colorDeMapper']),
+        deepcopy(pDict['runLengthVectors'])
+    )
+    # Get quantities and splits
+    pSums = {i: sum(pVectors[i]) for i in pVectors.keys()}
+    ixsMax = max(list(colDeDict.keys()))
+    ovrLen = {ix: pSums[ix] for ix in list(pSums.keys())}
+    ixsNeed = {ix: ceil(pSums[ix]/threshold) for ix in list(ovrLen.keys())}
+    # Generate scrambler dictionaries
+    scrambler = {}
+    cKey = ixsMax
+    for ix in list(ixsNeed.keys()):
+        cKeyNeed = ixsNeed[ix] 
+        if cKeyNeed > 1:
+            scrambler[ix] = [ix]
+            for ksNeed in range(cKeyNeed-1):
+                cKey = cKey + 1
+                colDeDict[cKey] = colDeDict[ix]
+                scrambler[ix] = scrambler[ix]+[cKey]
+        else:
+            scrambler[ix] = [ix]
+    colDict = {ix: tuple(set(scrambler[v]+[v])) for (ix, v) in colDict.items()}
+    return (colDict, colDeDict, scrambler)
+
 
 ###############################################################################
 # Image Preprocessing
