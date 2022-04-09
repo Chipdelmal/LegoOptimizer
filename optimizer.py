@@ -32,7 +32,7 @@ for colorIx in range(colorsNum):
     if VERBOSE:
         cHex = fun.rgbToHex(pDict['colorDeMapper'][colorIx])
         print(colored(
-                f"+ Solved for #{cHex} ({(colorIx+1):03d}/{colorsNum:03d})", 
+                f"+ Solved for #{cHex} ({(colorIx):03d}/{colorsNum-1:03d})", 
                 'blue'
             ), end = ' ')
     # Solve entry -------------------------------------------------------------

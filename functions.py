@@ -77,7 +77,8 @@ def genScrambleDicts(pDict, threshold=200):
 
 def scramblePixDict(pixDict, scrambler):
     pixDict = tuple([
-        tuple([choice(scrambler[c], 1)[0] for c in row]) for row in pixDict
+        tuple([choice(scrambler[c], 1)[0] for c in row]) 
+        for row in pixDict
     ])
     return pixDict
 

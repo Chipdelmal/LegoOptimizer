@@ -11,7 +11,7 @@ import functions as fun
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'awoofy.png')
+    (fPath, fName) = ('./demo', 'awoofySquare.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
 ###############################################################################
@@ -33,7 +33,11 @@ for row in decoded:
 ###############################################################################
 cDict = {i: [] for i in sorted(list(cSet))}
 for row in decoded:
-    rowDict = {c: v for (c, v) in row}
+    # rowDict = {c: v for (c, v) in row}
+    rowDict = {}
+    rowC = list(set([i[0] for i in row]))
+    for col in rowC:
+        rowDict[col] = fun.flatten([i[1] for i in row if i[0]==rowC[0]])
     for clr in rowDict.keys():
         cDict[clr].extend(rowDict[clr])
 ###############################################################################
