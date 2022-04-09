@@ -83,6 +83,18 @@ def scramblePixDict(pixDict, scrambler):
     return pixDict
 
 
+def getVectorCounts(pixDict, dictVals):
+    runL = [runLength(i) for i in pixDict]
+    # Get flattened vectors counts ------------------------------------------------
+    pVectors = {}
+    for dix in dictVals:
+        pValPerRow = [[c if i == dix else 0 for (c, i) in row] for row in runL]
+        pValPerRow = [[c for (c, i) in row if i==dix] for row in runL]
+        pValPerRow = flatten(pValPerRow)
+        pVectors[dix] = pValPerRow
+    pLengths = {i: len(pVectors[i]) for i in pVectors.keys()}
+    return (pVectors, pLengths)
+
 ###############################################################################
 # Image Preprocessing
 ###############################################################################
@@ -179,11 +191,11 @@ def solveColor(
     (x, solver, objective) = setSolverObjective(data, x, solver)
     # Solve problem -----------------------------------------------------------
     status = solver.Solve()
+    # Assemble and return solution --------------------------------------------
+    solution = convertSolution(data, x, blocks)
     # Timing ------------------------------------------------------------------
     toc = time()
     rTime = (toc-tic)/60
-    # Assemble and return solution --------------------------------------------
-    solution = convertSolution(data, x, blocks)
     # print(solution)
     if verbose:
         (gLen, gNum) = (len(gaps), sum(gaps))
@@ -194,7 +206,7 @@ def solveColor(
         # Print summary to terminal -------------------------------------------
         print(
             colored(
-                f"[{rTime:.2f} mins for {gLen:04d} elements with {gNum:04d} length]",
+                f"[{rTime:06.2f} mins for {gLen:04d} elements with {gNum:04d} length]",
                 pCol
             )
         )

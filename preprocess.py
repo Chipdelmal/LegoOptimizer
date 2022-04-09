@@ -4,14 +4,14 @@ from math import ceil
 import itertools
 from os import path
 from sys import argv
-
 from compress_pickle import dump
+from pyparsing import col
 from termcolor import colored
 import functions as fun
 import selections as sel
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'sami.png')
+    (fPath, fName) = ('./demo', 'awoofySquare.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
 VERBOSE = True
@@ -32,18 +32,10 @@ colDict = {col: ix for (ix, col) in enumerate(colPal)}
 colDeDict = {ix: col for (ix, col) in enumerate(colPal)}
 pixDict = tuple([tuple([colDict[i] for i in row]) for row in pixs])
 ###############################################################################
-# Get run length (need to modularize, as it's duplicated in split encoding)
+# Get run length
 ###############################################################################
 dictVals = list(colDict.values())
-runL = [fun.runLength(i) for i in pixDict]
-# Get flattened vectors counts ------------------------------------------------
-pVectors = {}
-for dix in dictVals:
-    pValPerRow = [[c if i == dix else 0 for (c, i) in row] for row in runL]
-    pValPerRow = [[c for (c, i) in row if i==dix] for row in runL]
-    pValPerRow = fun.flatten(pValPerRow)
-    pVectors[dix] = pValPerRow
-pLengths = {i: len(pVectors[i]) for i in pVectors.keys()}
+(pVectors, pLengths) = fun.getVectorCounts(pixDict, dictVals)
 ###############################################################################
 # Assemble and export vectors
 # -----------------------------------------------------------------------------
@@ -54,11 +46,11 @@ pLengths = {i: len(pVectors[i]) for i in pVectors.keys()}
 #   runLengthLengths: Run-length lengths per color
 ###############################################################################
 pDict = {
-    'colorMapper': colDict,
+    'colorMapper': colDict, 
     'colorDeMapper': colDeDict,
-    'imageMapped': pixDict,
-    'runLengthVectors': pVectors,
-    'runLengthLengths': pLengths
+    'runLengthVectors': pVectors, 
+    'runLengthLengths': pLengths,
+    'imageMapped': pixDict
 }
 pklFName = path.join(fPath, fName.split('.png')[0])+'.pkl'
 dump(pDict, pklFName)
@@ -69,7 +61,7 @@ pSums = {i: sum(pVectors[i]) for i in pVectors.keys()}
 if VERBOSE:
     print(colored(f'+ Vector lengths: {pSums}', 'blue'))
 ###############################################################################
-# Split longer entries (need to modularize)
+# Split longer entries
 ###############################################################################
 if sel.USER_SEL['lengthMax'] is not None:
     (colDict, colDeDict, scrambler) = fun.genScrambleDicts(
@@ -78,22 +70,14 @@ if sel.USER_SEL['lengthMax'] is not None:
     pixDict = fun.scramblePixDict(pixDict, scrambler)
     # Re-encode ---------------------------------------------------------------
     dictVals = sorted(fun.flatten(scrambler.values()))
-    runL = [fun.runLength(i) for i in pixDict]
-    # Get flattened vectors counts --------------------------------------------
-    pVectors = {}
-    for dix in dictVals:
-        pValPerRow = [[c if i == dix else 0 for (c, i) in row] for row in runL]
-        pValPerRow = [[c for (c, i) in row if i==dix] for row in runL]
-        pValPerRow = fun.flatten(pValPerRow)
-        pVectors[dix] = pValPerRow
-    pLengths = {i: len(pVectors[i]) for i in pVectors.keys()}
+    (pVectors, pLengths) = fun.getVectorCounts(pixDict, dictVals)
     # Setup new dictionary ----------------------------------------------------
     pDict = {
-        'colorMapper': colDict,
+        'colorMapper': colDict, 
         'colorDeMapper': colDeDict,
-        'imageMapped': pixDict,
-        'runLengthVectors': pVectors,
-        'runLengthLengths': pLengths
+        'runLengthVectors': pVectors, 
+        'runLengthLengths': pLengths,
+        'imageMapped': pixDict
     }
     pklFName = path.join(fPath, fName.split('.png')[0])+'.pkl'
     dump(pDict, pklFName)
@@ -101,3 +85,4 @@ if sel.USER_SEL['lengthMax'] is not None:
     pSums = {i: sum(pVectors[i]) for i in pVectors.keys()}
     if VERBOSE:
         print(colored(f'+ Split Vector lengths: {pSums}', 'blue'))
+

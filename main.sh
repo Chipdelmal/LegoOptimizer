@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FNAME='awoofySquare.png'
+FNAME='sami.png'
 PTH='./demo'
 
 echo "* Quantize and downscale image..."
