@@ -5,6 +5,7 @@ from time import time
 from copy import deepcopy
 from termcolor import colored
 from itertools import groupby
+from numpy.random import choice
 import matplotlib.pyplot as plt
 from PIL import Image, ImageColor
 import matplotlib.patches as mpatch
@@ -72,6 +73,13 @@ def genScrambleDicts(pDict, threshold=200):
             scrambler[ix] = [ix]
     colDict = {ix: tuple(set(scrambler[v]+[v])) for (ix, v) in colDict.items()}
     return (colDict, colDeDict, scrambler)
+
+
+def scramblePixDict(pixDict, scrambler):
+    pixDict = tuple([
+        tuple([choice(scrambler[c], 1)[0] for c in row]) for row in pixDict
+    ])
+    return pixDict
 
 
 ###############################################################################

@@ -8,7 +8,7 @@ import functions as fun
 import selections as sel
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'awoofy.png')
+    (fPath, fName) = ('./demo', 'sami.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
 
