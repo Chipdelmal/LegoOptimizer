@@ -13,3 +13,5 @@ echo "* Decoding results..."
 python decoder.py $PTH $FNAME
 echo "* Reconstructing image..."
 python reconstruct.py $PTH $FNAME
+echo '* Generating BOM...'
+python bom.py $PTH $FNAME

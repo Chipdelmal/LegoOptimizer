@@ -73,3 +73,4 @@ for rix in range(len(decoded)):
 dFName = path.join(fPath, fName.split('.png')[0])+'_Lego.png'
 img.save(dFName)
 
+

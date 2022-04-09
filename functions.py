@@ -168,6 +168,7 @@ def genColorCounts(
         xlim = (0, 1.25)
     ):
     pal = imgPalette
+    blocks = sum([sum(i.values()) for i in pal.values()])
     # Create canvas
     fig = plt.gcf()
     DPI = fig.get_dpi()
@@ -206,7 +207,7 @@ def genColorCounts(
     y_pos = ((j+1)%(n_rows))*hr
     ax.text(
         hshift, y_pos+hr/2, 
-        f'Total: {pxSize[0]*pxSize[1]}', 
+        f'Total: {blocks} blocks', 
         color='k', va='center', ha='left', fontdict=fontdict
     )
     # Clean up the axes

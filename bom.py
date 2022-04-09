@@ -58,3 +58,4 @@ imgBOM = Image.open(dFName).convert('RGB')
 ccat = fun.hConcat(img, imgBOM)
 dFName = path.join(fPath, fName.split('.png')[0])+'_FNL.png'
 ccat.save(dFName)
+
