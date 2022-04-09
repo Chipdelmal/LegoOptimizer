@@ -28,6 +28,7 @@ This bash wrapper runs the following scripts in order:
 3. [Optimization](./optimizer.py): solve multiple-knappsack problem
 4. [Postproces](./decoder.py): decode run-length to image reconstruct
 5. [Image reconstruction](./reconstruct.py): reconstruct image with block highlights
+6. [Bill of Materials](./bom.py): Get the BOM and add it to the image
 
 
 ## Dependencies

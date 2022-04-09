@@ -3,7 +3,9 @@ import numpy as np
 from time import time
 from termcolor import colored
 from itertools import groupby
+import matplotlib.pyplot as plt
 from PIL import Image, ImageColor
+import matplotlib.patches as mpatch
 from ortools.linear_solver import pywraplp
 import constants as cst
 
@@ -38,7 +40,6 @@ def isInt(element):
         return True
     except ValueError:
         return False
-
 
 ###############################################################################
 # Image Preprocessing
@@ -157,3 +158,60 @@ def solveColor(
         )
     outDict = solution
     return outDict
+
+###############################################################################
+# BOM Swatch
+###############################################################################
+def genColorCounts(
+        imgPalette, width, height, imgSize, upscale=1,
+        fontdict = {'family':'monospace', 'weight':'normal', 'size':30},
+        xlim = (0, 1.25)
+    ):
+    pal = imgPalette
+    # Create canvas
+    fig = plt.gcf()
+    DPI = fig.get_dpi()
+    ax = fig.add_axes([0, 0, 1, 1])
+    fig.set_size_inches(width/float(DPI), height/float(DPI))
+    # Setting up groups
+    n_groups = 1
+    n_rows = len(pal)//n_groups+1
+    # Generate swatch with count
+    for j in range(len(pal)):
+        (wr, hr) = (.25, 1)
+        (color, count) = pal[j]
+        rgb = [i/255 for i in ImageColor.getcolor(color, "RGB")]
+        # Color rows
+        col_shift = (j//n_rows)*3
+        y_pos = (j%(n_rows))*hr
+        # Print rectangle and text
+        hshift = .05
+        ax.add_patch(mpatch.Rectangle(
+            (hshift+col_shift, y_pos), wr, hr, color=rgb, ec='k', lw=4
+        ))
+        colorText = color.upper()
+        ax.text(
+            hshift+wr*1.1+col_shift, y_pos+hr/2, 
+            f' {colorText} ({count:05}) ', 
+            color='k', va='center', ha='left', fontdict=fontdict
+        )
+    # Add pixel size and total count
+    pxSize = [int(i/upscale) for i in imgSize]
+    y_pos = ((0)%(n_rows))*hr
+    ax.text(
+        hshift, y_pos-hr/2, 
+        f'Size: {pxSize[0]}x{pxSize[1]}', 
+        color='k', va='center', ha='left', fontdict=fontdict
+    )
+    y_pos = ((j+1)%(n_rows))*hr
+    ax.text(
+        hshift, y_pos+hr/2, 
+        f'Total: {pxSize[0]*pxSize[1]}', 
+        color='k', va='center', ha='left', fontdict=fontdict
+    )
+    # Clean up the axes
+    ax.set_xlim(xlim[0], xlim[1]*n_groups)
+    ax.set_ylim((n_rows), -1)
+    ax.axis('off')
+    # Return figure
+    return (fig, ax)
