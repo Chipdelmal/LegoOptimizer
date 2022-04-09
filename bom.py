@@ -4,10 +4,11 @@ from os import path
 from sys import argv
 from PIL import Image
 from collections import Counter
-from compress_pickle import dump, load
+from compress_pickle import load
+import matplotlib.pyplot as plt
 import selections as sel
 import functions as fun
-import selections as sel
+
 
 if fun.isNotebook():
     (fPath, fName) = ('./demo', 'awoofy.png')
@@ -40,3 +41,20 @@ for row in decoded:
 ###############################################################################
 cList = list(cDict.keys())
 cCounts = {col: dict(Counter(sorted(cDict[col]))) for col in cList}
+###############################################################################
+# Generate BOM image
+###############################################################################
+bom = fun.genColorCounts(
+    cCounts, 250, img.size[1], img.size, upscale=sel.USER_SEL['scaler']
+)
+dFName = path.join(fPath, fName.split('.png')[0])+'_BOM.png'
+plt.savefig(
+    dFName, bbox_inches='tight', pad_inches=0, facecolor='w'
+)
+###############################################################################
+# Concatenate images
+###############################################################################
+imgBOM = Image.open(dFName).convert('RGB')
+ccat = fun.hConcat(img, imgBOM)
+dFName = path.join(fPath, fName.split('.png')[0])+'_FNL.png'
+ccat.save(dFName)

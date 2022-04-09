@@ -177,10 +177,10 @@ def genColorCounts(
     n_groups = 1
     n_rows = len(pal)//n_groups+1
     # Generate swatch with count
-    for j in range(len(pal)):
+    for (j, cdt) in enumerate(sorted(list(pal.keys()))):
         (wr, hr) = (.25, 1)
-        (color, count) = pal[j]
-        rgb = [i/255 for i in ImageColor.getcolor(color, "RGB")]
+        (color, count) = (cdt, pal[cdt])
+        rgb = [i/255 for i in color]
         # Color rows
         col_shift = (j//n_rows)*3
         y_pos = (j%(n_rows))*hr
@@ -189,10 +189,10 @@ def genColorCounts(
         ax.add_patch(mpatch.Rectangle(
             (hshift+col_shift, y_pos), wr, hr, color=rgb, ec='k', lw=4
         ))
-        colorText = color.upper()
+        colorText = rgbToHex(color).upper()
         ax.text(
             hshift+wr*1.1+col_shift, y_pos+hr/2, 
-            f' {colorText} ({count:05}) ', 
+            f' {colorText} {count} ', 
             color='k', va='center', ha='left', fontdict=fontdict
         )
     # Add pixel size and total count
@@ -215,3 +215,10 @@ def genColorCounts(
     ax.axis('off')
     # Return figure
     return (fig, ax)
+
+
+def hConcat(im1, im2):
+    dst = Image.new('RGB', (im1.width + im2.width, im1.height))
+    dst.paste(im1, (0, 0))
+    dst.paste(im2, (im1.width, 0))
+    return dst
