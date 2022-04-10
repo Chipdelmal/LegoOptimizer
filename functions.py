@@ -5,7 +5,7 @@ from time import time
 from copy import deepcopy
 from termcolor import colored
 from itertools import groupby
-from numpy.random import choice
+from numpy.random import choice, randint
 import matplotlib.pyplot as plt
 from PIL import Image, ImageColor
 import matplotlib.patches as mpatch
@@ -75,12 +75,51 @@ def genScrambleDicts(pDict, threshold=200):
     return (colDict, colDeDict, scrambler)
 
 
-def scramblePixDict(pixDict, scrambler):
+def scramblePixDictUniform(pixDict, scrambler):
     pixDict = tuple([
         tuple([choice(scrambler[c], 1)[0] for c in row]) 
         for row in pixDict
     ])
     return pixDict
+
+
+def pixRowSection(x, l):
+    for i, y in enumerate(l):
+        if y > x:
+            return i-1
+    return i
+
+
+def scramblePixRowLengthColor(
+        pixArray, 
+        scrambler, scramblerIx, 
+        intRange=(-3, 3)
+    ):
+    for (row, _) in enumerate(pixArray):
+        pixRow = pixArray[row]
+        # Generate a random shift for the intervals
+        (cids, clen) = (scrambler[scramblerIx], len(scrambler[scramblerIx]))
+        totalCount = list(pixRow).count(scramblerIx)
+        csamps = randint(intRange[0], intRange[1], clen)
+        # Get the regular intervals over replacements
+        pixRowL = len(pixRow)
+        pixDelta = [i*totalCount//clen for i in range(clen)]
+        # Generate shifted intervals
+        intervals = (csamps + pixDelta)
+        # Replace color in row
+        cCount = 0
+        for (ix, _) in enumerate(pixRow):
+            if pixRow[ix] == scramblerIx:
+                cCount = cCount+1
+                pixRow[ix] = cids[pixRowSection(cCount, intervals)]
+    return pixArray
+
+
+def scramblePixDictLength(pixDict, scrambler, intRange=(-3, 3)):
+    pixArray = np.asarray(pixDict)
+    for cid in list(scrambler.keys()):
+        scramblePixRowLengthColor(pixArray, scrambler, cid, intRange=intRange)
+    return tuple([tuple(row) for row in pixArray])
 
 
 def getVectorCounts(pixDict, dictVals):

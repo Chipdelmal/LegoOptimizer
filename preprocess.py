@@ -67,7 +67,8 @@ if sel.USER_SEL['lengthMax'] is not None:
     (colDict, colDeDict, scrambler) = fun.genScrambleDicts(
         pDict, threshold=sel.USER_SEL['lengthMax']
     )
-    pixDict = fun.scramblePixDict(pixDict, scrambler)
+    # pixDict = fun.scramblePixDictUniform(pixDict, scrambler)
+    pixDict = fun.scramblePixDictLength(pixDict, scrambler)
     # Re-encode ---------------------------------------------------------------
     dictVals = sorted(fun.flatten(scrambler.values()))
     (pVectors, pLengths) = fun.getVectorCounts(pixDict, dictVals)
@@ -85,4 +86,5 @@ if sel.USER_SEL['lengthMax'] is not None:
     pSums = {i: sum(pVectors[i]) for i in pVectors.keys()}
     if VERBOSE:
         print(colored(f'+ Split Vector lengths: {pSums}', 'blue'))
+
 
