@@ -1,6 +1,6 @@
 # LegoOptimizer
 
-Please have a look at my [blog post](https://chipdelmal.github.io/artsci/2022-04-04-LegoOptimizer.html) for more info on how this pipeline works!
+Please have a look at my [blog post](https://chipdelmal.github.io/artsci/2022-04-04-LegoOptimizer.html) for more info on how this pipeline works and the reasoning behind the solution.
 
 ## Problem Statement
 
@@ -12,6 +12,16 @@ Unfortunately, this is not as easy of a problem as it looks at first glance and 
 
 
 ![](https://chipdelmal.github.io/media/lego/sami_FNL.png)
+
+## Features
+
+* Automatic image re-scaling.
+* Arbitrary color-palette quantization (or quantization to a given number of colors).
+* Prioritization of certain block-lengths provided by the user.
+* Arbitrary pools of blocks can be defined.
+* Highlighting of missing pieces for the image to be completed.
+* Generation of the "bill of materials".
+
 
 ## Pipeline
 
@@ -39,9 +49,7 @@ This bash wrapper runs the following scripts in order:
 
 ## Dependencies
 
-To run the code, install the following dependencies: [matplotlib](https://matplotlib.org/), [opencv-python](https://pypi.org/project/opencv-python/), [Pillow](https://pillow.readthedocs.io/en/stable/), [numpy](https://numpy.org/), [OR-Tools](https://developers.google.com/optimization/install), [compress-pickle](https://pypi.org/project/compress-pickle/), [termcolor](https://pypi.org/project/termcolor2/). Which are also defined in the [REQUIREMENTS.yml](./REQUIREMENTS.yml) and [REQUIREMENTS.txt](./REQUIREMENTS.txt). 
-
-Working in an independent virtual environment like [anaconda](https://www.anaconda.com/) and [virtualenv](https://virtualenv.pypa.io/en/latest/) is highly recommended!
+To run the code, install the following dependencies: [matplotlib](https://matplotlib.org/), [opencv-python](https://pypi.org/project/opencv-python/), [Pillow](https://pillow.readthedocs.io/en/stable/), [numpy](https://numpy.org/), [OR-Tools](https://developers.google.com/optimization/install), [compress-pickle](https://pypi.org/project/compress-pickle/), [termcolor](https://pypi.org/project/termcolor2/). Working in an independent virtual environment like [anaconda](https://www.anaconda.com/) and [virtualenv](https://virtualenv.pypa.io/en/latest/) is highly recommended!
 
 
 ## Author
