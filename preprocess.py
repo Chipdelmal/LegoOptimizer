@@ -67,8 +67,12 @@ if sel.USER_SEL['lengthMax'] is not None:
     (colDict, colDeDict, scrambler) = fun.genScrambleDicts(
         pDict, threshold=sel.USER_SEL['lengthMax']
     )
-    # pixDict = fun.scramblePixDictUniform(pixDict, scrambler)
-    pixDict = fun.scramblePixDictLength(pixDict, scrambler)
+    if sel.USER_SEL['shuffler']:
+        pixDict = fun.scramblePixDictUniform(pixDict, scrambler)
+    else:
+        pixDict = fun.scramblePixDictLength(
+            pixDict, scrambler, intRange=sel.USER_SEL['shuffleRange']
+        )
     # Re-encode ---------------------------------------------------------------
     dictVals = sorted(fun.flatten(scrambler.values()))
     (pVectors, pLengths) = fun.getVectorCounts(pixDict, dictVals)

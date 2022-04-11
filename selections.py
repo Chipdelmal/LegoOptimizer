@@ -6,11 +6,13 @@ import constants as cst
 ############################################################################### 
 USER_SEL = {
     'size': [int(i*1) for i in (50, 50)],
-    'palette': 14, # cst.LEGO_LIMITED, # 6,
+    'palette': cst.LEGO_LIMITED, # 6,
     'blocks': cst.LIMITLESS_BLOCKS_SUPPLY,
-    'priority': cst.BALANCED_BLOCK_VALUES,
+    'priority': cst.LARGE_FIRST_BLOCK_VALUES,
     'verbose': True,
     'scaler': 30,
-    'lengthMax': 200 
+    'lengthMax': None,
+    'shuffler': 'length',
+    'shuffleRange': (-3, 3)
 }
 
