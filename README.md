@@ -30,6 +30,7 @@ This bash wrapper runs the following scripts in order:
 5. [Image reconstruction](./reconstruct.py): reconstruct image with block highlights
 6. [Bill of Materials](./bom.py): Get the BOM and add it to the image
 
+![](https://chipdelmal.github.io/media/lego/sami_FNL.png)
 
 ## Dependencies
 
