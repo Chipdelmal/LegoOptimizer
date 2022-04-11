@@ -9,6 +9,7 @@ Given a pixel-based image and a pool of colored Lego blocks: Can I recreate the 
 
 Unfortunately, this is not as easy of a problem as it looks at first glance and it will take image quantizing, run-length encoding, multiple-knapsack problems instances, and some image overlays to get it all done!
 
+![](https://chipdelmal.github.io/media/lego/demo.png)
 
 ## Pipeline
 
