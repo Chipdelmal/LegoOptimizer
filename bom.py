@@ -11,7 +11,7 @@ import functions as fun
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'awoofySquare.png')
+    (fPath, fName) = ('./demo', 'sami.png')
 else:
     (fPath, fName) = (argv[1], argv[2])
 ###############################################################################
@@ -32,12 +32,13 @@ for row in decoded:
 # Get colors blocks
 ###############################################################################
 cDict = {i: [] for i in sorted(list(cSet))}
+row = decoded[0]
 for row in decoded:
     # rowDict = {c: v for (c, v) in row}
     rowDict = {}
     rowC = list(set([i[0] for i in row]))
     for col in rowC:
-        rowDict[col] = fun.flatten([i[1] for i in row if i[0]==rowC[0]])
+        rowDict[col] = fun.flatten([i[1] for i in row if i[0]==col])
     for clr in rowDict.keys():
         cDict[clr].extend(rowDict[clr])
 ###############################################################################
@@ -45,6 +46,10 @@ for row in decoded:
 ###############################################################################
 cList = list(cDict.keys())
 cCounts = {col: dict(Counter(sorted(cDict[col]))) for col in cList}
+# Patch missing blocks index --------------------------------------------------
+# for k in list(cCounts.keys()):
+#     try: cCounts[k]['M'] = cCounts[k].pop(-1)
+#     except: continue
 ###############################################################################
 # Generate BOM image
 ###############################################################################
@@ -55,6 +60,7 @@ dFName = path.join(fPath, fName.split('.png')[0])+'_BOM.png'
 plt.savefig(
     dFName, bbox_inches='tight', pad_inches=0, facecolor='w'
 )
+plt.close('all')
 ###############################################################################
 # Concatenate images
 ###############################################################################
@@ -63,3 +69,7 @@ ccat = fun.hConcat(img, imgBOM)
 dFName = path.join(fPath, fName.split('.png')[0])+'_FNL.png'
 ccat.save(dFName)
 
+
+
+# sum([i for i in cDict[(55, 33, 0)] if i==-1])
+# fun.flatten([i[1] for i in row if i[0]==rowC[0]])
