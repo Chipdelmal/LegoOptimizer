@@ -1,5 +1,6 @@
 # LegoOptimizer
 
+Please have a look at my [blog post](https://chipdelmal.github.io/artsci/2022-04-04-LegoOptimizer.html) for more info on how this pipeline works!
 
 ## Problem Statement
 
@@ -9,7 +10,8 @@ Given a pixel-based image and a pool of colored Lego blocks: Can I recreate the 
 
 Unfortunately, this is not as easy of a problem as it looks at first glance and it will take image quantizing, run-length encoding, multiple-knapsack problems instances, and some image overlays to get it all done!
 
-![](https://chipdelmal.github.io/media/lego/demo.png)
+
+![](https://chipdelmal.github.io/media/lego/sami_FNL.png)
 
 ## Pipeline
 
@@ -31,7 +33,9 @@ This bash wrapper runs the following scripts in order:
 5. [Image reconstruction](./reconstruct.py): reconstruct image with block highlights
 6. [Bill of Materials](./bom.py): Get the BOM and add it to the image
 
-![](https://chipdelmal.github.io/media/lego/sami_FNL.png)
+
+![](https://chipdelmal.github.io/media/lego/demo.png)
+
 
 ## Dependencies
 
