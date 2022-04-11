@@ -42,4 +42,6 @@ Working in an independent virtual environment like [anaconda](https://www.anacon
 
 ## Author
 
+<img src="https://chipdelmal.github.io/MGSurvE_Presentations/2022_Lab/images/detective.png" height="125px" align="middle">
+
 Héctor M. Sánchez C.
