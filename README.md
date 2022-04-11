@@ -40,18 +40,6 @@ To run the code, install the following dependencies: [matplotlib](https://matplo
 Working in an independent virtual environment like [anaconda](https://www.anaconda.com/) and [virtualenv](https://virtualenv.pypa.io/en/latest/) is highly recommended!
 
 
-## Sources
-
-* https://www.educative.io/m/find-all-sum-combinations
-* https://developers.google.com/optimization/bin/multiple_knapsack
-* https://stackoverflow.com/questions/42422921/multiple-subset-sum-calculation
-* https://stackoverflow.com/questions/43618910/pil-drawing-a-semi-transparent-square-overlay-on-image#43620169
-
-## To Do
-
-* Break the missing rectangles into lego blocks
-* Code the terminal wrapper so that inputs don't have to be changed in the python [selections](./selections.py) file
-
 ## Author
 
 Héctor M. Sánchez C.
