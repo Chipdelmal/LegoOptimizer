@@ -1,6 +1,6 @@
 # Lego Portrait Optimizer
 
-Please have a look at my [blog post](https://chipdelmal.github.io/artsci/2022-04-04-LegoOptimizer.html) for more info on how this pipeline works, and the reasoning behind the solution.
+Please have a look at my [blog post](https://chipdelmal.github.io/artsci/2022-04-04-LegoOptimizer.html) for more info on how this pipeline works, and the reasoning behind the solution!
 
 ## Problem Statement
 
