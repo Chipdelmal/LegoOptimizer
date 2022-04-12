@@ -4,9 +4,7 @@ Please have a look at my [blog post](https://chipdelmal.github.io/artsci/2022-04
 
 ## Problem Statement
 
-Given a pixel-based image and a pool of colored Lego blocks: 
-
-  * Can I recreate the image with my available blocks?
+Given a pixel-based image and a pool of colored Lego blocks: can I recreate the image with my available blocks?
     * If so, how should I arrange them so that I don't run out of them without the image being completed?
     * If not, what blocks are missing for me to complete the image?
 
