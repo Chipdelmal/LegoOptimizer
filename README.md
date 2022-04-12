@@ -12,7 +12,6 @@ Unfortunately, this is not as easy of a problem as it looks at first glance and 
 
 
 
-
 ## Features
 
 * Automatic image re-scaling.
@@ -44,7 +43,7 @@ This bash wrapper runs the following scripts in order:
 6. [Bill of Materials](./bom.py): Get the BOM and add it to the image
 
 
-![](https://chipdelmal.github.io/media/lego/UPS-Endesaga_32-fightersPalette_FNL.png)
+![](https://chipdelmal.github.io/media/lego/bike_FNL.png)
 
 
 ## Dependencies
