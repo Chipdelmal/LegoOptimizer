@@ -32,7 +32,7 @@ To get the code up and running, have a look at the [selections.py](./selections.
 Now, just run the [main.sh](./main.sh) file with:
 
 ``` bash
-main.sh FILE_NAME FILE_PATH
+main.sh FILE_PATH FILE_NAME
 ```
 
 

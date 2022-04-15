@@ -1,5 +1,6 @@
 # Media
 *.png
+*.gif
 *.bz
 *.pkl
 

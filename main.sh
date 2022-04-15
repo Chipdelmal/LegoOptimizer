@@ -1,7 +1,7 @@
 #!/bin/bash
 
-FNAME='sami.png'
-PTH='./demo'
+FNAME=$2 # 'UPS-Endesaga_32-fightersPalette.png'
+PTH=$1 # './demo'
 
 echo "* Quantize and downscale image..."
 python pimage.py $PTH $FNAME

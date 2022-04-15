@@ -1,11 +1,9 @@
 
 import cv2
-from math import ceil
 import itertools
 from os import path
 from sys import argv
 from compress_pickle import dump
-from pyparsing import col
 from termcolor import colored
 import functions as fun
 import selections as sel
@@ -67,9 +65,11 @@ if sel.USER_SEL['lengthMax'] is not None:
     (colDict, colDeDict, scrambler) = fun.genScrambleDicts(
         pDict, threshold=sel.USER_SEL['lengthMax']
     )
-    if sel.USER_SEL['shuffler']:
+    if sel.USER_SEL['shuffler'] == 'shuffler':
+        print("- Uniform Scrambler")
         pixDict = fun.scramblePixDictUniform(pixDict, scrambler)
     else:
+        print("- Length-Based Scrambler")
         pixDict = fun.scramblePixDictLength(
             pixDict, scrambler, intRange=sel.USER_SEL['shuffleRange']
         )
