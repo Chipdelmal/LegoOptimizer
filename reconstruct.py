@@ -5,7 +5,7 @@ from sys import argv
 from PIL import Image, ImageDraw
 from compress_pickle import dump, load
 import functions as fun
-import selections as sel
+import settings as sel
 
 if fun.isNotebook():
     (fPath, fName) = ('./demo', 'sami.png')

@@ -6,7 +6,7 @@ from sys import argv
 from compress_pickle import dump
 from termcolor import colored
 import functions as fun
-import selections as sel
+import settings as sel
 
 if fun.isNotebook():
     (fPath, fName) = ('./demo', 'awoofySquare.png')
@@ -66,10 +66,10 @@ if sel.USER_SEL['lengthMax'] is not None:
         pDict, threshold=sel.USER_SEL['lengthMax']
     )
     if sel.USER_SEL['shuffler'] == 'shuffler':
-        print("- Uniform Scrambler")
+        print(colored("- Uniform Scrambler", 'red'))
         pixDict = fun.scramblePixDictUniform(pixDict, scrambler)
     else:
-        print("- Length-Based Scrambler")
+        print(colored("- Length-Based Scrambler", 'red'))
         pixDict = fun.scramblePixDictLength(
             pixDict, scrambler, intRange=sel.USER_SEL['shuffleRange']
         )

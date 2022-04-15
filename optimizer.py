@@ -4,7 +4,7 @@ from sys import argv
 from termcolor import colored
 from compress_pickle import dump, load
 import functions as fun
-import selections as sel
+import settings as sel
 
 
 if fun.isNotebook():

@@ -6,7 +6,7 @@ from PIL import Image
 from collections import Counter
 from compress_pickle import load
 import matplotlib.pyplot as plt
-import selections as sel
+import settings as sel
 import functions as fun
 
 

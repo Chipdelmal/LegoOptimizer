@@ -20,7 +20,7 @@ LARGE_FIRST_BLOCK_VALUES = {1:1, 2:3, 3:8, 4:10, 5:12, 6:15, 7:17, 8:20}
 ###############################################################################
 # Blocks Supply Pools
 ###############################################################################
-(QTY, MAX_LEN) = (750, 6)
+(QTY, MAX_LEN) = (500, 6)
 # Uniform blocks supply -------------------------------------------------------
 LIMITLESS_BLOCKS_SUPPLY = []
 for i in range(1, MAX_LEN+1):
@@ -78,4 +78,5 @@ LEGO_LIMITED = (
 ###############################################################################
 # Lego Website
 ###############################################################################
-# https://www.lego.com/en-us/page/static/pick-a-brick?query=%22Brick%201x2%22&page=1&sort.key=PRICE&sort.direction=ASC&filters.i0.key=variants.attributes.designNumber&filters.i0.values.i0=3004
+# 2x1: https://www.lego.com/en-us/page/static/pick-a-brick?query=%22Brick%201x2%22&page=1&sort.key=PRICE&sort.direction=ASC&filters.i0.key=variants.attributes.designNumber&filters.i0.values.i0=3004
+# 2x6: https://www.lego.com/en-us/page/static/pick-a-brick?query=2x6&page=1&sort.key=PRICE&sort.direction=ASC&filters.i0.key=variants.attributes.designNumber&filters.i0.values.i0=44237

@@ -4,7 +4,7 @@ from sys import argv
 from PIL import Image
 import functions as fun
 import constants as cst
-import selections as sel
+import settings as sel
 
 
 if fun.isNotebook():
