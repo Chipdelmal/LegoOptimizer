@@ -56,6 +56,7 @@ pip install numpy
 pip install matplotlib
 pip install compress-pickle
 pip install termcolor
+pip install Pillow
 ```
 
 ## Author
