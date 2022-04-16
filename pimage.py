@@ -29,22 +29,24 @@ img = Image.open(pth).convert('RGB')
 if isinstance(PALETTE, int):
     # Provided palette is a number of target quantization colors --------------
     imgQnt = fun.quantizeImage(img, int(PALETTE), method=0)
+    print(colored(f'+ Quantizing image to {PALETTE} colors', 'red'))
 elif isinstance(PALETTE, tuple) or isinstance(PALETTE, list):
     # Provided palette is a list or tuple of colors with no block qty ---------
     cpal = fun.paletteReshape(PALETTE)
     imgQnt = fun.quantizeImage(
-        img, colorsNumber=cpal[0], colorPalette=cpal[1], method=0
+        img, colorPalette=cpal[1], method=0
     )
+    print(colored(f'+ Quantizing image to palette with no block QTY', 'red'))
 elif isinstance(PALETTE, dict):
     # Provided palette is a dictionary of colors with block qty ---------------
     pal = tuple(PALETTE.keys())
     cpal = fun.paletteReshape(pal)
     imgQnt = fun.quantizeImage(
-        img, colorsNumber=cpal[0], colorPalette=cpal[1], method=0
+        img, colorPalette=cpal[1], method=0
     )
+    print(colored(f'+ Quantizing image to palette with block QTY', 'red'))
 else:
     print(colored("Error in the color palette!", "red"))
-    sys.exit()
 ###############################################################################
 # Downscale
 #   NEAREST, BILINEAR, BICUBIC, LANCZOS, NEAREST

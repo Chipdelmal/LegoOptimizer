@@ -147,7 +147,7 @@ def paletteReshape(colorPalette):
     pal = [item for sublist in rgbTuples for item in sublist]
     entries = int(len(pal)/3)
     # Palette swatch
-    palette = pal + [0,]*(256-entries)*3
+    palette = pal # + [0,]*(256-entries)*3
     resnp = np.arange(entries, dtype=np.uint8).reshape(entries, 1)
     resim = Image.fromarray(resnp, mode='P')
     resim.putpalette(palette)

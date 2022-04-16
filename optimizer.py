@@ -1,6 +1,7 @@
 
 from os import path
 from sys import argv
+from PIL import ImageColor
 from termcolor import colored
 from compress_pickle import dump, load
 import functions as fun
@@ -38,19 +39,35 @@ pDict = load(pklFName)
 # -----------------------------------------------------------------------------
 #   solution: {colorIndex: {gapIndex: blocks combination}}
 ###############################################################################
-msg = lambda hex, cix, cnum: f"+ Solved for #{hex} ({(cix):03d}/{cnum-1:03d})"
-
-solution = {}
 colorsNum = len(pDict['runLengthVectors'])
+solution = {}
+# if BLK_QTY:
+#     # Color palette is dict with blocks qtys ----------------------------------
+#     colEntries = tuple(sel.USER_SEL['palette'].items())
+#     colDeMap = pDict['colorDeMapper']
+#     colorIx = 0
+#     for colorIx in range(colorsNum):
+#         gaps = pDict['runLengthVectors'][colorIx]
+#         solution[colorIx] = fun.solveColor(
+#             gaps, BLOCKS, values=VALUES, verbose=VERBOSE
+#         )
+#         msg = lambda hex, cix, cnum: f"+ Solved for #{hex} ({(cix):03d}/{cnum-1:03d})"
+#         if VERBOSE:
+#             cHex = fun.rgbToHex(pDict['colorDeMapper'][colorIx])
+#             print(colored(msg(cHex, colorIx, colorsNum), 'blue'), end = ' ')
+# else:
+# Color palette does not have block qtys (use 'blocks' selection) ---------
 for colorIx in range(colorsNum):
+    msg = lambda hex, cix, cnum: f"+ Solved for #{hex} ({(cix):03d}/{cnum-1:03d})"
     if VERBOSE:
         cHex = fun.rgbToHex(pDict['colorDeMapper'][colorIx])
         print(colored(msg(cHex, colorIx, colorsNum), 'blue'), end = ' ')
-    # Solve entry -------------------------------------------------------------
+    # Solve entry
     gaps = pDict['runLengthVectors'][colorIx]
     solution[colorIx] = fun.solveColor(
         gaps, BLOCKS, values=VALUES, verbose=VERBOSE
     )
+
 ###############################################################################
 # Export solution
 ###############################################################################
