@@ -2,6 +2,8 @@
 from os import path
 from sys import argv
 from PIL import Image
+from PIL.Image import Resampling
+from termcolor import colored
 import functions as fun
 import constants as cst
 import settings as sel
@@ -24,17 +26,29 @@ img = Image.open(pth).convert('RGB')
 # Quantize
 #   0: median cut, 1: maximum coverage, 2: fast octree
 ###############################################################################
-if not isinstance(PALETTE, tuple):
+if isinstance(PALETTE, int):
+    # Provided palette is a number of target quantization colors --------------
     imgQnt = fun.quantizeImage(img, int(PALETTE), method=0)
-else:
+elif isinstance(PALETTE, tuple) or isinstance(PALETTE, list):
+    # Provided palette is a list or tuple of colors with no block qty ---------
     cpal = fun.paletteReshape(PALETTE)
     imgQnt = fun.quantizeImage(
         img, colorsNumber=cpal[0], colorPalette=cpal[1], method=0
     )
+elif isinstance(PALETTE, dict):
+    # Provided palette is a dictionary of colors with block qty ---------------
+    pal = tuple(PALETTE.keys())
+    cpal = fun.paletteReshape(pal)
+    imgQnt = fun.quantizeImage(
+        img, colorsNumber=cpal[0], colorPalette=cpal[1], method=0
+    )
+else:
+    print(colored("Error in the color palette!", "red"))
+    sys.exit()
 ###############################################################################
 # Downscale
-#   Image.NEAREST, Image.BILINEAR, Image.BICUBIC, Image.LANCZOS, Image.NEAREST
+#   NEAREST, BILINEAR, BICUBIC, LANCZOS, NEAREST
 ###############################################################################
 pthDWN = path.join(fPath, fName.split('.png')[0]+'_DWN.png')
-imgDwn = imgQnt.resize(SIZE, resample=Image.LANCZOS)
+imgDwn = imgQnt.resize(SIZE, resample=Resampling.NEAREST)
 imgDwn.save(pthDWN)

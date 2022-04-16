@@ -11,7 +11,10 @@ import functions as fun
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'sami.png')
+    (fPath, fName) = (
+        '/Users/sanchez.hmsc/Documents/SyncMega/LegoOptimizer/', 
+        'megaman.png'
+    )
 else:
     (fPath, fName) = (argv[1], argv[2])
 ###############################################################################
@@ -69,7 +72,3 @@ ccat = fun.hConcat(img, imgBOM)
 dFName = path.join(fPath, fName.split('.png')[0])+'_FNL.png'
 ccat.save(dFName)
 
-
-
-# sum([i for i in cDict[(55, 33, 0)] if i==-1])
-# fun.flatten([i[1] for i in row if i[0]==rowC[0]])
