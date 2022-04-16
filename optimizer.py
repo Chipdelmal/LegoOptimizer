@@ -8,14 +8,26 @@ import settings as sel
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'sami.png')
+    (fPath, fName) = (
+        '/Users/sanchez.hmsc/Documents/SyncMega/LegoOptimizer/', 
+        'megaman.png'
+    )
 else:
     (fPath, fName) = (argv[1], argv[2])
 ###############################################################################
 # Get user selections from file
 ###############################################################################
-(VALUES, BLOCKS) = (sel.USER_SEL['priority'], sel.USER_SEL['blocks'])
-VERBOSE = True
+(VALUES, BLOCKS, PALETTE, VERBOSE) = (
+    sel.USER_SEL['priority'], sel.USER_SEL['blocks'],
+    sel.USER_SEL['palette'], sel.USER_SEL['verbose']
+)
+###############################################################################
+# Check if the palette provides blocks quantities
+###############################################################################
+if any([isinstance(PALETTE, t) for t in (int, tuple, list)]):
+    BLK_QTY = False
+else:
+    BLK_QTY = True
 ###############################################################################
 # Load data
 ###############################################################################
