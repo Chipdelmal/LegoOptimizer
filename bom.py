@@ -11,7 +11,10 @@ import functions as fun
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'sami.png')
+    (fPath, fName) = (
+        '/Users/sanchez.hmsc/Documents/SyncMega/LegoOptimizer/', 
+        'megaman.png'
+    )
 else:
     (fPath, fName) = (argv[1], argv[2])
 ###############################################################################
