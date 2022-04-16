@@ -66,10 +66,10 @@ if sel.USER_SEL['lengthMax'] is not None:
         pDict, threshold=sel.USER_SEL['lengthMax']
     )
     if sel.USER_SEL['shuffler'] == 'shuffler':
-        print(colored("- Uniform Scrambler", 'red'))
+        print(colored("- Using Uniform Scrambler", 'red'))
         pixDict = fun.scramblePixDictUniform(pixDict, scrambler)
     else:
-        print(colored("- Length-Based Scrambler", 'red'))
+        print(colored("- Using Length-Based Scrambler", 'red'))
         pixDict = fun.scramblePixDictLength(
             pixDict, scrambler, intRange=sel.USER_SEL['shuffleRange']
         )

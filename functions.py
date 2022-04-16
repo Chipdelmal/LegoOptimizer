@@ -236,6 +236,7 @@ def solveColor(
     toc = time()
     rTime = (toc-tic)/60
     # print(solution)
+    msg = lambda rTime, gLen, gNum : f"[{rTime:06.2f} mins for {gLen:04d} elements with {gNum:04d} length]"
     if verbose:
         (gLen, gNum) = (len(gaps), sum(gaps))
         if (gNum==sum(flatten(solution))):
@@ -243,12 +244,7 @@ def solveColor(
         else:
             pCol = 'red'
         # Print summary to terminal -------------------------------------------
-        print(
-            colored(
-                f"[{rTime:06.2f} mins for {gLen:04d} elements with {gNum:04d} length]",
-                pCol
-            )
-        )
+        print(colored(msg(rTime, gLen, gNum), pCol))
     outDict = solution
     return outDict
 

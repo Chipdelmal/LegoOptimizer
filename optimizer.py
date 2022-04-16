@@ -9,7 +9,7 @@ import settings as sel
 
 if fun.isNotebook():
     (fPath, fName) = (
-        '/Users/sanchez.hmsc/Documents/SyncMega/LegoOptimizer/', 
+        '/home/chipdelmal/Documents/Sync/LegoOptimizer/', 
         'megaman.png'
     )
 else:
@@ -38,15 +38,14 @@ pDict = load(pklFName)
 # -----------------------------------------------------------------------------
 #   solution: {colorIndex: {gapIndex: blocks combination}}
 ###############################################################################
+msg = lambda hex, cix, cnum: f"+ Solved for #{hex} ({(cix):03d}/{cnum-1:03d})"
+
 solution = {}
 colorsNum = len(pDict['runLengthVectors'])
 for colorIx in range(colorsNum):
     if VERBOSE:
         cHex = fun.rgbToHex(pDict['colorDeMapper'][colorIx])
-        print(colored(
-                f"+ Solved for #{cHex} ({(colorIx):03d}/{colorsNum-1:03d})", 
-                'blue'
-            ), end = ' ')
+        print(colored(msg(cHex, colorIx, colorsNum), 'blue'), end = ' ')
     # Solve entry -------------------------------------------------------------
     gaps = pDict['runLengthVectors'][colorIx]
     solution[colorIx] = fun.solveColor(
