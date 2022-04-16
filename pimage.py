@@ -2,6 +2,7 @@
 from os import path
 from sys import argv
 from PIL import Image
+from PIL.Image import Resampling
 import functions as fun
 import constants as cst
 import settings as sel
@@ -36,5 +37,5 @@ else:
 #   Image.NEAREST, Image.BILINEAR, Image.BICUBIC, Image.LANCZOS, Image.NEAREST
 ###############################################################################
 pthDWN = path.join(fPath, fName.split('.png')[0]+'_DWN.png')
-imgDwn = imgQnt.resize(SIZE, resample=Image.LANCZOS)
+imgDwn = imgQnt.resize(SIZE, resample=Resampling.NEAREST)
 imgDwn.save(pthDWN)
