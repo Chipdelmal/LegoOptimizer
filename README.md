@@ -50,6 +50,13 @@ This bash wrapper runs the following scripts in order:
 
 To run the code, install the following dependencies: [matplotlib](https://matplotlib.org/), [opencv-python](https://pypi.org/project/opencv-python/), [Pillow](https://pillow.readthedocs.io/en/stable/), [numpy](https://numpy.org/), [OR-Tools](https://developers.google.com/optimization/install), [compress-pickle](https://pypi.org/project/compress-pickle/), [termcolor](https://pypi.org/project/termcolor2/). Working in an independent virtual environment like [anaconda](https://www.anaconda.com/) and [virtualenv](https://virtualenv.pypa.io/en/latest/) is highly recommended!
 
+```bash
+pip install ortools
+pip install numpy
+pip install matplotlib
+pip install compress-pickle
+pip install termcolor
+```
 
 ## Author
 
