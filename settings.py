@@ -10,7 +10,7 @@ USER_SEL = {
     'blocks': cst.LIMITLESS_BLOCKS_SUPPLY,
     'priority': cst.LARGE_FIRST_BLOCK_VALUES,
     'verbose': True,
-    'scaler': 30,
+    'scaler': 25,
     'lengthMax': 500,
     'shuffler': 'length', # 'shuffler'
     'shuffleRange': (-5, 5)
