@@ -54,3 +54,4 @@ else:
 pthDWN = path.join(fPath, fName.split('.png')[0]+'_DWN.png')
 imgDwn = imgQnt.resize(SIZE, resample=Resampling.NEAREST)
 imgDwn.save(pthDWN)
+imgDwn.close()
