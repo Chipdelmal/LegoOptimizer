@@ -1,8 +1,6 @@
 
 from os import path
 from sys import argv
-from PIL import ImageColor
-from collections import Counter
 from termcolor import colored
 from compress_pickle import dump, load
 import functions as fun
