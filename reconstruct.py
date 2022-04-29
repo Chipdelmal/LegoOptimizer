@@ -3,12 +3,15 @@ import numpy as np
 from os import path
 from sys import argv
 from PIL import Image, ImageDraw
-from compress_pickle import dump, load
+from compress_pickle import load
 import functions as fun
 import settings as sel
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'sami.png')
+    (fPath, fName) = (
+        '/home/chipdelmal/Documents/Sync/LegoOptimizer/', 
+        'marioTanooki.png'
+    )
 else:
     (fPath, fName) = (argv[1], argv[2])
 

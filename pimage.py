@@ -5,12 +5,14 @@ from PIL import Image
 from PIL.Image import Resampling
 from termcolor import colored
 import functions as fun
-import constants as cst
 import settings as sel
 
 
 if fun.isNotebook():
-    (fPath, fName) = ('./demo', 'sami.png')
+    (fPath, fName) = (
+        '/home/chipdelmal/Documents/Sync/LegoOptimizer/', 
+        'marioTanooki.png'
+    )
 else:
     (fPath, fName) = (argv[1], argv[2])
 ###############################################################################
@@ -52,6 +54,6 @@ else:
 #   NEAREST, BILINEAR, BICUBIC, LANCZOS, NEAREST
 ###############################################################################
 pthDWN = path.join(fPath, fName.split('.png')[0]+'_DWN.png')
-imgDwn = imgQnt.resize(SIZE, resample=Resampling.NEAREST)
+imgDwn = imgQnt.resize(SIZE, resample=Resampling.LANCZOS)
 imgDwn.save(pthDWN)
 imgDwn.close()
