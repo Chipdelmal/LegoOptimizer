@@ -1,6 +1,6 @@
 ![](https://chipdelmal.github.io/media/lego/banner.png)
 
-Please have a look at my [blog post](https://chipdelmal.github.io/artsci/2022-04-04-LegoOptimizer.html) for more info on how this pipeline works, and the reasoning behind the solution!
+Please have a look at my [blog posts](https://chipdelmal.github.io/artsci.html) ([post 1](https://chipdelmal.github.io/artsci/2022-04-04-LegoOptimizer.html), [post 2](https://chipdelmal.github.io/artsci/2022-04-13-LegoOptimizerFollow.html) for more info on how this pipeline works, and the reasoning behind the solution!
 
 ## Problem Statement
 
